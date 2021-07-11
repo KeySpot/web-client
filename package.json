@@ -1,19 +1,22 @@
 {
-  "name": "web-client",
+  "name": "@keyspot/web-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "exit 0"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.4.2",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "commit-testing": "^1.4.0",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1"
   }
