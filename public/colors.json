@@ -1,5 +1,6 @@
 {
     "palette": {
+        "type": "dark",
         "primary": {
             "light": "#484848",
             "main": "#212121",
@@ -7,9 +8,9 @@
             "contrastText": "#ffffff"
         },
         "secondary": {
-            "light": "#a255ff",
-            "main": "#651fff",
-            "dark": "#0100ca",
+            "light": "#e254ff",
+            "main": "#aa00ff",
+            "dark": "#7200ca",
             "contrastText": "#ffffff"
         }
     }
