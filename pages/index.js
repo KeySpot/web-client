@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -14,7 +12,8 @@ import config from '../config.json';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    zIndex: 1,
   },
   paper: {
     padding: theme.spacing(2),
@@ -31,7 +30,7 @@ export default function Home() {
   if (!error && !isLoading && user) router.push('/records');
 
   return (
-    <div>
+    <div className="background">
       <AppBar title={config.appName} />
       <Head>
         <title>KeySpot</title>
@@ -39,25 +38,27 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <div className={classes.root} >
-          <Container maxWidth="md" >
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper} >
-                  <Typography variant="h4" >Welcome to {config.appName}</Typography>
-                </Paper>
+      <main className="main">
+        <div>
+          <div className={classes.root} >
+            <Container maxWidth="md" >
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper} >
+                    <Typography variant="h4" >Welcome to {config.appName}</Typography>
+                  </Paper>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <Grid container spacing={3}>
-              <Grid item xs>
-                <Paper className={classes.paper} >
-                  <Typography variant="h4" >Landing page</Typography>
-                </Paper>
+              <Grid container spacing={3}>
+                <Grid item xs>
+                  <Paper className={classes.paper} >
+                    <Typography variant="h4" >Landing page</Typography>
+                  </Paper>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
+            </Container>
+          </div>
         </div>
       </main>
     </div>

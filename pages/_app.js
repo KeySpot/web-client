@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createTheme } from '@material-ui/core/styles';
 import colors from '../public/colors.json';
+import '../styles/styles.css';
 
 const theme = createTheme(colors);
 

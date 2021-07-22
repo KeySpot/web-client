@@ -1,16 +1,16 @@
 {
     "palette": {
         "primary": {
-            "light": "#63a4ff",
-            "main": "#1976d2",
-            "dark": "#004ba0",
+            "light": "#484848",
+            "main": "#212121",
+            "dark": "#000000",
             "contrastText": "#ffffff"
         },
         "secondary": {
-            "light": "#c3fdff",
-            "main": "#90caf9",
-            "dark": "#5d99c6",
-            "contrastText": "#000000"
+            "light": "#a255ff",
+            "main": "#651fff",
+            "dark": "#0100ca",
+            "contrastText": "#ffffff"
         }
     }
 }

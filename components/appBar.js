@@ -17,8 +17,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -91,9 +93,18 @@ export default function PrimarySearchAppBar({ title }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [searchString, setSearchString] = React.useState('');
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  if (searchString.length > 0) {
+    onkeypress = e => {
+      if (e.key === 'Enter') {
+        router.push(`/${searchString}`);
+      }
+    }
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -150,14 +161,20 @@ export default function PrimarySearchAppBar({ title }) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+          {
+            user && router.pathname !== '/records' && router.pathname !== '/' ?
+            <Link href="/records">
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="open drawer"
+              >
+                <ArrowBackIosIcon />
+              </IconButton>
+            </Link> :
+            <></>
+          }
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
@@ -166,6 +183,7 @@ export default function PrimarySearchAppBar({ title }) {
               <SearchIcon />
             </div>
             <InputBase
+            onChange={e => setSearchString(e.target.value)}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
