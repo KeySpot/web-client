@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 650,
     },
+    topTextField: { 
+        color: 'primary.contrastText', 
+        textAlign: 'center', 
+        fontSize: '3em',
+    }
 }));
 
 export default function AccessKey() {
@@ -139,7 +144,7 @@ export default function AccessKey() {
         body.push(
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
-                    <Typography variant="h4" >Failed to load: {error.toString()}</Typography>
+                    <Typography variant="h4" >Failed to find that record</Typography>
                 </Paper>
             </Grid>
         );
@@ -155,7 +160,7 @@ export default function AccessKey() {
         body.push(
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
-                    <TextField inputProps={{ style: { textAlign: 'center', fontSize: '3em' } }} onChange={e => setNewName(e.target.value)} value={newName} />
+                    <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
                     <Typography>accessKey: {router.query.accessKey}</Typography>
                 </Paper>
             </Grid>,
@@ -214,7 +219,7 @@ export default function AccessKey() {
 
     return (
         <div className="background">
-            <AppBar title={data ? data.name : ''} />
+            <AppBar hasSearch={true} title={data ? data.name : ''} />
             <Head>
                 <title>{data ? data.name : ''}</title>
                 <meta name="description" content="Written by Carl Schader" />

@@ -21,6 +21,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Link from 'next/link';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ title }) {
+export default function PrimarySearchAppBar({ title, hasSearch }) {
   const { user, error, isLoading } = useUser(); 
   const router = useRouter();
 
@@ -105,7 +106,7 @@ export default function PrimarySearchAppBar({ title }) {
       }
     }
   }
-
+  
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -178,20 +179,24 @@ export default function PrimarySearchAppBar({ title }) {
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-            onChange={e => setSearchString(e.target.value)}
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+          {
+            hasSearch ?
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <VpnKeyIcon />
+              </div>
+              <InputBase
+              onChange={e => setSearchString(e.target.value)}
+                placeholder="Access Key"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div> :
+            <></>
+          }
           <div className={classes.grow} />
           {user ? <Typography noWrap>{user.name}</Typography> : <></>}
           <div className={classes.sectionDesktop}>

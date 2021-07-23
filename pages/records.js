@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    // color: theme.palette.text.secondary,
   },
   modalPaper: {
     position: 'absolute',
@@ -54,7 +53,7 @@ export default function Records() {
   }
 
   function DataView() {
-    if (error || !Array.isArray(data)) {
+    if (error) {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
@@ -62,7 +61,7 @@ export default function Records() {
           </Paper>
         </Grid>
       );
-    } else if (!data) {
+    } else if (!data || !Array.isArray(data)) {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
@@ -72,8 +71,8 @@ export default function Records() {
       );
     } else {
       let items = [
-        <ListItem button onClick={() => setModalOpen(true)} >
-          <ListItemIcon>
+        <ListItem key="0" button onClick={() => setModalOpen(true)} >
+          <ListItemIcon className={classes.contraster} >
             <AddOutlinedIcon />
           </ListItemIcon>
           <ListItemText primary="Add Record" />
@@ -84,8 +83,8 @@ export default function Records() {
         items.push(
           <Grid item xs={12} >
             <Link href={`/${item._id}`}>
-              <ListItem button >
-                <ListItemIcon>
+              <ListItem key={item._id} button>
+                <ListItemIcon className={classes.contraster} >
                   <SubjectIcon />
                 </ListItemIcon>
                 <ListItemText primary={item.name} />
@@ -96,13 +95,14 @@ export default function Records() {
       }
 
       return [
-        <Grid item xs={12} >
+        // <Grid item xs={12} >
+        //   <Paper className={classes.paper} >
+        //     <Typography variant="h4" >Records</Typography>
+        //   </Paper>
+        // </Grid>,
+        <Grid key={0} item xs={12}>
           <Paper className={classes.paper} >
             <Typography variant="h4" >Records</Typography>
-          </Paper>
-        </Grid>,
-        <Grid item xs={12}>
-          <Paper className={classes.paper} >
             <List>
               {items}
             </List>
@@ -114,7 +114,7 @@ export default function Records() {
 
   return (
     <div className="background">
-      <AppBar title="Records" />
+      <AppBar hasSearch={true} title="Records" />
       <Head>
         <title>Records</title>
         <meta name="description" content="Written by Carl Schader" />
