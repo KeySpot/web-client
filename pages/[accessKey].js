@@ -38,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
     applyPaperElement: {
         paddingLeft: theme.spacing(8),
         paddingRight: theme.spacing(8),
-        margin: theme.spacing(2),
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
     },
     modalElement: {
         marginLeft: theme.spacing(2),
