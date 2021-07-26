@@ -26,6 +26,8 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    // position: 'fixed',
+    // width: '100%',
   },
   menuButton: {
     marginRight: theme.spacing(2),

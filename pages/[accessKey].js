@@ -220,7 +220,7 @@ export default function AccessKey() {
 
 
     return (
-        <div className="background">
+        <div className="background scrollable">
             <AppBar hasSearch={true} title={data ? data.name : ''} />
             <Head>
                 <title>{data ? data.name : ''}</title>

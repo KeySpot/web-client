@@ -113,7 +113,7 @@ export default function Records() {
   }
 
   return (
-    <div className="background">
+    <div className="background scrollable">
       <AppBar hasSearch={true} title="Records" />
       <Head>
         <title>Records</title>
