@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      maxWidth: "10%",
     },
   },
   search: {

@@ -10,7 +10,10 @@ import { useRouter } from 'next/router';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import InputBase from '@material-ui/core/InputBase';
 import { useState } from 'react';
+import Image from 'next/image';
+import Button from '@material-ui/core/Button';
 
+import logo from '../public/logo.png';
 import config from '../config.json';
 
 const useStyles = makeStyles((theme) => ({
@@ -74,6 +77,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const titleJsx = <Image src={logo} alt="logo" />;
+
 export default function Home() {
   const classes = useStyles();
   const router = useRouter();
@@ -92,7 +97,7 @@ export default function Home() {
 
   return (
     <div className="background scrollable">
-      <AppBar title={config.appName} />
+      <AppBar title={<Image src={logo} alt="logo"/>} />
       <Head>
         <title>KeySpot</title>
         <meta name="description" content="Written by Carl Schader" />
@@ -107,7 +112,10 @@ export default function Home() {
                 <Grid item xs={12}>
                   <Paper className={classes.paper} >
                     <Typography className={classes.paperElement} variant="h4" >Welcome to {config.appName}</Typography>
-                    <Typography className={classes.paperElement} >Enter an acceess key or login to create and see your records</Typography>
+                    <Typography className={classes.paperElement} >KeySpot is a developer tool for managing environment variables and application secrets.</Typography>
+                    <Typography className={classes.paperElement} >Store all your variables in one location and access them directly in code without .env files.</Typography>
+                    <Button className={classes.modalElement} variant="contained" color="secondary" onClick={() => router.replace('/api/auth/login')} >Login</Button>
+                    <Typography className={classes.paperElement} >If you have an access key, enter it below.</Typography>
                     {/* <Paper className={classes.searchPaper} > */}
                       <div className={classes.search}>
                         <div className={classes.searchIcon}>
