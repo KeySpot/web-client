@@ -91,7 +91,7 @@ export default function Home() {
   }
 
   return (
-    <div className="background">
+    <div className="background scrollable">
       <AppBar title={config.appName} />
       <Head>
         <title>KeySpot</title>
