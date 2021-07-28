@@ -22,6 +22,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import Fab from '@material-ui/core/Fab';
+import HiddenField from '../components/hiddenField';
+import HiddenInput from '../components/hiddenInput';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -163,7 +165,7 @@ export default function AccessKey() {
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
                     <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
-                    <Typography>accessKey: {router.query.accessKey}</Typography>
+                    <Typography>accessKey: <HiddenField value={router.query.accessKey} /></Typography>
                 </Paper>
             </Grid>,
             <Grid item xs={12} >
@@ -184,7 +186,7 @@ export default function AccessKey() {
                                 <TableRow>
                                     {/* <TableCell><AddOutlinedIcon /></TableCell> */}
                                     <TableCell><TextField label="New Key" onChange={e => setNewKey(e.target.value)} value={newKey} /></TableCell>
-                                    <TableCell><TextField align="right" label="New Value" onChange={e => setNewValue(e.target.value)} value={newValue} /></TableCell>
+                                    <TableCell><HiddenInput align="right" label="New Value" onChange={e => setNewValue(e.target.value)} value={newValue} /></TableCell>
                                     <TableCell><Fab variant="contained" color="secondary" disabled={!newKey} onClick={handleAddKvp} ><AddOutlinedIcon /></Fab></TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -200,7 +202,7 @@ export default function AccessKey() {
                                             <TextField autoFocus={focused ? focused[0] === index && focused[1] === 'key' : false} variant="outlined" onChange={e => handleChangeKey(index, e.target.value)} defaultValue={row[0]} />
                                         </TableCell>
                                         <TableCell>
-                                            <TextField autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} />
+                                            <HiddenInput autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} />
                                         </TableCell>
                                         <TableCell align="right">
                                             <IconButton color="secondary" variant="contained" onClick={() => handleDeleteKvp(index)}>
