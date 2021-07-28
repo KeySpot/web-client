@@ -17,6 +17,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import SubjectIcon from '@material-ui/icons/Subject';
 import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +46,10 @@ export default function Records() {
   const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
   const [newRecordName, setNewRecordName] = useState('');
+  const router = useRouter();
+  const { user, isLoading } = useUser();
+
+  if ( !isLoading && !user) router.push('/');
 
   function handleNewRecord() {
     fetch(`/api/newName/${newRecordName}`, { method: 'POST' })
@@ -102,7 +108,7 @@ export default function Records() {
         // </Grid>,
         <Grid key={0} item xs={12}>
           <Paper className={classes.paper} >
-            <Typography variant="h4" >Records</Typography>
+            <Typography variant="h4" >Your Records</Typography>
             <List>
               {items}
             </List>
@@ -123,7 +129,7 @@ export default function Records() {
 
       <main className="main" >
         <div className={classes.root}>
-          <Container maxWidth="md" >
+          <Container maxWidth="lg" >
             <Grid container spacing={3}>
               <DataView />
             </Grid>

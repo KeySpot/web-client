@@ -172,12 +172,12 @@ export default function AccessKey() {
                 <Paper className={classes.applyPaper} >
                     <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={revertForm} >Revert</Button>
                     <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={updateForm} >Apply</Button>
-                    <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={isOwner !== true} onClick={() => setModalOpen(true)} >Delete</Button>
+                    <Button className={classes.applyPaperElement} variant="contained" color="default" disabled={isOwner !== true} onClick={() => setModalOpen(true)} >Delete Record</Button>
                 </Paper>
             </Grid>,
             <Grid item xs={12}>
                 <Paper className={classes.paper} >
-                    {/* <List>
+                    {/* <List>md
                         {items}
                     </List> */}
                     <TableContainer>
@@ -232,7 +232,7 @@ export default function AccessKey() {
 
             <main className="main">
                 <div className={classes.root}>
-                    <Container maxWidth="md" >
+                    <Container maxWidth="lg" >
                         <Grid container spacing={3}>
                             {body}
                         </Grid>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import config from '../config.json';
 
 import React from 'react';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,8 +22,67 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import Link from 'next/link';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
   grow: {
     flexGrow: 1,
     // position: 'fixed',
@@ -88,19 +147,32 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  AppBar: {
+    // margin: theme.spacing(2),
+  },
 }));
 
-export default function PrimarySearchAppBar({ title, hasSearch }) {
+export default function PrimarySearchAppBar({ title }) {
   const { user, error, isLoading } = useUser(); 
   const router = useRouter();
 
   const classes = useStyles();
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchString, setSearchString] = React.useState('');
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
 
   if (searchString.length > 0) {
     onkeypress = e => {
@@ -163,7 +235,7 @@ export default function PrimarySearchAppBar({ title, hasSearch }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className={classes.AppBar} position="fixed">
         <Toolbar>
           {
             user && router.pathname !== '/records' && router.pathname !== '/' ?
@@ -179,11 +251,12 @@ export default function PrimarySearchAppBar({ title, hasSearch }) {
             </Link> :
             <></>
           }
+          <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
-          {
-            hasSearch ?
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <VpnKeyIcon />
@@ -197,9 +270,7 @@ export default function PrimarySearchAppBar({ title, hasSearch }) {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </div> :
-            <></>
-          }
+            </div>
           <div className={classes.grow} />
           {user ? <Typography noWrap>{user.name}</Typography> : <></>}
           <div className={classes.sectionDesktop}>
@@ -243,6 +314,40 @@ export default function PrimarySearchAppBar({ title, hasSearch }) {
           </div>
         </Toolbar>
       </AppBar>
+      <Toolbar />
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="left"
+        open={drawerOpen}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
       {renderMobileMenu}
       {renderMenu}
     </div>

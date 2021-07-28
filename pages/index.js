@@ -12,6 +12,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { useState } from 'react';
 import Image from 'next/image';
 import Button from '@material-ui/core/Button';
+import Landing from '../components/landing';
 
 import logo from '../public/logo.png';
 import config from '../config.json';
@@ -107,32 +108,10 @@ export default function Home() {
       <main className="main">
         <div>
           <div className={classes.root} >
-            <Container maxWidth="md" >
+            <Container maxWidth="lg" >
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Paper className={classes.paper} >
-                    <Typography className={classes.paperElement} variant="h4" >Welcome to {config.appName}</Typography>
-                    <Typography className={classes.paperElement} >KeySpot is a developer tool for managing environment variables and application secrets.</Typography>
-                    <Typography className={classes.paperElement} >Store all your variables in one location and access them directly in code without .env files.</Typography>
-                    <Button className={classes.modalElement} variant="contained" color="secondary" onClick={() => router.replace('/api/auth/login')} >Login</Button>
-                    <Typography className={classes.paperElement} >If you have an access key, enter it below.</Typography>
-                    {/* <Paper className={classes.searchPaper} > */}
-                      <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                          <VpnKeyIcon />
-                        </div>
-                        <InputBase
-                        onChange={e => setSearchString(e.target.value)}
-                          placeholder="Access Key"
-                          classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                          }}
-                          inputProps={{ 'aria-label': 'search' }}
-                        />
-                      </div>
-                    {/* </Paper> */}
-                  </Paper>
+                  <Landing />
                 </Grid>
               </Grid>
 

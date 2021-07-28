@@ -14,7 +14,7 @@ export default function HiddenField({ value='', defaultHidden=true }) {
 
     return (
         <>
-            <span>{hidden ? '\u25CF'.repeat(value.length) : value}</span>
+            <span>{hidden ? '\u2022'.repeat(value.length) : value}</span>
             <Tooltip title={hidden ? 'show' : 'hide'} ><IconButton onClick={() => setHidden(!hidden)} >{hidden ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton></Tooltip>
             <Tooltip title="Copy to Clipboard" ><IconButton onClick={copyToClipboard} ><FileCopyIcon /></IconButton></Tooltip>
         </>
