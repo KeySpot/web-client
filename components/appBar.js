@@ -251,9 +251,10 @@ export default function PrimarySearchAppBar({ title }) {
             </Link> :
             <></>
           }
-          <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* Left Menu */}
+          {/* <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
