@@ -142,7 +142,7 @@ export default function LandingCard() {
                 <Grid item xs={1} />
                 <Grid item xs={4}>
                     <Typography variant="h5">
-                        <p>"KeySpot is awesome, it makes it really easy for my team and I to manage our dev, test, staging, and prod environments across all our microservices."</p>
+                        <p>{'"KeySpot is awesome, it makes it really easy for my team and I to manage our dev, test, staging, and prod environments across all our microservices."'}</p>
                     </Typography>
                     <Typography>
                         <span>Carl Schader</span>
