@@ -2,7 +2,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
 import config from '../config.json';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -33,6 +33,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SubjectIcon from '@material-ui/icons/Subject';
 import DescriptionIcon from '@material-ui/icons/Description';
+import AccessKeyContext from '../context/accessKeyContext';
 
 const drawerWidth = 240;
 
@@ -155,6 +156,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar({ title }) {
+  const [accessKey, setAccessKey] = useContext(AccessKeyContext);
   const { user, error, isLoading } = useUser(); 
   const router = useRouter();
 
@@ -179,7 +181,8 @@ export default function PrimarySearchAppBar({ title }) {
   if (searchString.length > 0) {
     onkeypress = e => {
       if (e.key === 'Enter') {
-        router.push(`/${searchString}`);
+        setAccessKey(searchString);
+        router.replace(`/record`);
       }
     }
   }
