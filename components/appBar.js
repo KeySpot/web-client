@@ -31,6 +31,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SubjectIcon from '@material-ui/icons/Subject';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 const drawerWidth = 240;
 
@@ -237,7 +239,10 @@ export default function PrimarySearchAppBar({ title }) {
     <div className={classes.grow}>
       <AppBar className={classes.AppBar} position="fixed">
         <Toolbar>
-          {
+          <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          {/* {
             user && router.pathname !== '/records' && router.pathname !== '/' ?
             <Link href="/records">
               <IconButton
@@ -250,11 +255,8 @@ export default function PrimarySearchAppBar({ title }) {
               </IconButton>
             </Link> :
             <></>
-          }
+          } */}
           {/* Left Menu */}
-          {/* <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
@@ -332,21 +334,21 @@ export default function PrimarySearchAppBar({ title }) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+          <Link href="/records">
+              <ListItem button key={'Records'}>
+                  <ListItemIcon><SubjectIcon /></ListItemIcon>
+                  <ListItemText primary={'Records'} />
+              </ListItem>
+              </Link>
+          </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <Link href='/docs'>
+            <ListItem button key={'Docs'}>
+              <ListItemIcon><DescriptionIcon /></ListItemIcon>
+              <ListItemText primary={'Docs'} />
             </ListItem>
-          ))}
+          </Link>
         </List>
       </Drawer>
       {renderMobileMenu}

@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '../components/modal';
 import TextField from '@material-ui/core/TextField';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,6 +19,7 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
+import AccessKeyContext from '../context/accessKeyContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const fetcher = url => fetch(url).then(res => res.json());
 
 export default function Records() {
+  const [accessKey, setAccessKey] = useContext(AccessKeyContext);
   const { data, error, mutate } = useSWR('/api/accessKeys', fetcher);
   const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
@@ -88,8 +90,8 @@ export default function Records() {
       for (const item of data) {
         items.push(
           <Grid item xs={12} >
-            <Link href={`/${item._id}`}>
-              <ListItem key={item._id} button>
+            <Link href={`/record`}>
+              <ListItem onClick={() => setAccessKey(item._id)} key={item._id} button>
                 <ListItemIcon className={classes.contraster} >
                   <SubjectIcon />
                 </ListItemIcon>

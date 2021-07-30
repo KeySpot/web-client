@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '../components/modal';
 import TextField from '@material-ui/core/TextField';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import { useRouter } from 'next/router';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,6 +24,7 @@ import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import Fab from '@material-ui/core/Fab';
 import HiddenField from '../components/hiddenField';
 import HiddenInput from '../components/hiddenInput';
+import AccessKeyContext from '../context/accessKeyContext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,17 +54,18 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 650,
     },
     topTextField: { 
-        color: 'primary.contrastText', 
+        color: 'primary.contrastText',
         textAlign: 'center', 
         fontSize: '3em',
     }
 }));
 
 export default function AccessKey() {
+    const [accessKey, setAccessKey] = useContext(AccessKeyContext);
     const classes = useStyles();
     const router = useRouter();
-    const { data, error, mutate } = useSWR(router.query.accessKey ? `/api/${router.query.accessKey}` : null, url => fetch(url).then(res => res.json()));
-    const { data: isOwner } = useSWR(router.query.accessKey ? `/api/isOwner/${router.query.accessKey}` : null, url => fetch(url).then(res => res.json()));
+    const { data, error, mutate } = useSWR(accessKey ? `/api/${accessKey}` : null, url => fetch(url).then(res => res.json()));
+    const { data: isOwner } = useSWR(accessKey ? `/api/isOwner/${accessKey}` : null, url => fetch(url).then(res => res.json()));
     const [newKey, setNewKey] = useState('');
     const [newValue, setNewValue] = useState('');
     const [rows, setRows] = useState([]);
@@ -71,9 +73,12 @@ export default function AccessKey() {
     const [newName, setNewName] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
 
+    console.log(accessKey)
+
     useEffect(function () {
         if (data) {
-            revertForm();
+            setRows(Object.entries(data.record));
+            setNewName(data.name);
         }
     }, [data]);
 
@@ -114,7 +119,7 @@ export default function AccessKey() {
 
     function updateForm() {
         let newData = objectFromRows();
-        fetch(`/api/${router.query.accessKey}?name=${newName}`, {
+        fetch(`/api/${accessKey}?name=${newName}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -131,7 +136,7 @@ export default function AccessKey() {
     }
 
     function deleteForm() {
-        fetch(`/api/delete/${router.query.accessKey}`, {
+        fetch(`/api/delete/${accessKey}`, {
             method: 'DELETE'
         })
             .then(res => router.push('/records'))
@@ -165,7 +170,7 @@ export default function AccessKey() {
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
                     <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
-                    <Typography>accessKey: <HiddenField value={router.query.accessKey} /></Typography>
+                    <Typography>accessKey: <HiddenField value={accessKey} /></Typography>
                 </Paper>
             </Grid>,
             <Grid item xs={12} >
