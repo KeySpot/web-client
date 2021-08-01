@@ -12,6 +12,14 @@ main {
     margin-bottom: 5%;
 }
 
+a {
+    color: #FAEBD7;
+}
+
+pre {
+    background-color: #484848;
+}
+
 .scrollable {
     overflow-y: auto;
 }
