@@ -95,26 +95,14 @@ export default function LandingCard() {
                 <Grid item xs={12}>
                     <Typography variant="h3" >Easy to Use</Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    {/* <ReactPlayer 
-                        url="https://www.youtube.com/watch?v=NLNtkcgM8CE"
-                        // controls={false}
-                        // muted={true}
-                        // loop={true}
-                        // playing={true}
-                        config={ {
-                            file: {
-                                attributes: {
-                                    controlsList: "nodownload"
-                                }
-                            }
-                        } }
-                        onContextMenu={ handleContextMenu }
-
-                    /> */}
-                    {/* <Image src={apiScreenshot} alt="code snippet" /> */}
+                <Grid item xs={6}>
                     <ReactMarkdown components={{ code: CodeBlock }} >
-                        {"terminal\n```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```\nindex.js\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n```"}
+                        {"\nindex.js\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
+                    </ReactMarkdown>
+                </Grid>
+                <Grid item xs={6}>
+                    <ReactMarkdown components={{ code: CodeBlock }} >
+                        {"terminal\n```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
                     </ReactMarkdown>
                 </Grid>
                 <Grid item xs={4}>
