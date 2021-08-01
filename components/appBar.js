@@ -337,7 +337,7 @@ export default function PrimarySearchAppBar({ title }) {
         </div>
         <Divider />
         <List>
-          <Link href="/records">
+          <Link href="/records" passHref >
               <ListItem button key={'Records'}>
                   <ListItemIcon><SubjectIcon /></ListItemIcon>
                   <ListItemText primary={'Records'} />
@@ -346,7 +346,7 @@ export default function PrimarySearchAppBar({ title }) {
           </List>
         <Divider />
         <List>
-          <Link href='/docs'>
+          <Link href='/docs'passHref >
             <ListItem button key={'Docs'}>
               <ListItemIcon><DescriptionIcon /></ListItemIcon>
               <ListItemText primary={'Docs'} />

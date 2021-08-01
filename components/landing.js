@@ -110,7 +110,7 @@ export default function LandingCard() {
                         onContextMenu={ handleContextMenu }
 
                     /> */}
-                    <Image src={apiScreenshot} />
+                    <Image src={apiScreenshot} alt="code snippet" />
                 </Grid>
                 <Grid item xs={4}>
                     <Typography variant="h6" >All environments in one place</Typography>
@@ -152,7 +152,7 @@ export default function LandingCard() {
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={5}>
-                    <Image src={appDev} />
+                    <Image src={appDev} alt="application development" />
                 </Grid>
             </Grid>
 

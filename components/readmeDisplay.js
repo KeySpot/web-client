@@ -26,7 +26,7 @@ const components = {
     a: MarkdownLink,
 };
 
-export default function readmeDisplay({ url, language }) {
+export default function ReadmeDisplay({ url, language }) {
     const classes = useStyles();
     const { data, error } = useSWR(`/api/getReadme?url=${readmeUrl(url)}`, fetcher);
 
@@ -45,7 +45,7 @@ export default function readmeDisplay({ url, language }) {
     } else {
         return (
             <Typography>
-                <ReactMarkdown components={components} children={data.content} />
+                <ReactMarkdown components={components} >{data.content}</ReactMarkdown>
             </Typography>
         );
     }

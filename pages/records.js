@@ -90,7 +90,7 @@ export default function Records() {
       for (const item of data) {
         items.push(
           <Grid item xs={12} >
-            <Link href={`/record`}>
+            <Link href={`/record`} passHref >
               <ListItem onClick={() => setAccessKey(item._id)} key={item._id} button>
                 <ListItemIcon className={classes.contraster} >
                   <SubjectIcon />
