@@ -1,39 +1,39 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import { useRouter } from 'next/router';
-import config from '../config.json';
+import React, { useContext, useState } from 'react';
 
-import React, { useContext } from 'react';
-import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+import { useUser } from '@auth0/nextjs-auth0';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import Link from 'next/link';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import AccessKeyContext from '../context/accessKeyContext';
+import Collapse from '@material-ui/core/Collapse';
+import MenuIcon from '@material-ui/icons/Menu';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import SubjectIcon from '@material-ui/icons/Subject';
 import DescriptionIcon from '@material-ui/icons/Description';
-import AccessKeyContext from '../context/accessKeyContext';
+import SubjectIcon from '@material-ui/icons/Subject';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
+
+import languages from '../config/languages';
 
 const drawerWidth = 240;
 
@@ -166,6 +166,7 @@ export default function PrimarySearchAppBar({ title }) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchString, setSearchString] = React.useState('');
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [docsListOpen, setDocsListOpen] = useState(true);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -245,21 +246,6 @@ export default function PrimarySearchAppBar({ title }) {
           <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          {/* {
-            user && router.pathname !== '/records' && router.pathname !== '/' ?
-            <Link href="/records">
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="open drawer"
-              >
-                <ArrowBackIosIcon />
-              </IconButton>
-            </Link> :
-            <></>
-          } */}
-          {/* Left Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
@@ -280,17 +266,6 @@ export default function PrimarySearchAppBar({ title }) {
           <div className={classes.grow} />
           {user ? <Typography noWrap>{user.name}</Typography> : <></>}
           <div className={classes.sectionDesktop}>
-            {/* <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
-            
             {
               user ? 
 
@@ -346,13 +321,28 @@ export default function PrimarySearchAppBar({ title }) {
           </List>
         <Divider />
         <List>
-          <Link href='/docs'passHref >
-            <ListItem button key={'Docs'}>
-              <ListItemIcon><DescriptionIcon /></ListItemIcon>
-              <ListItemText primary={'Docs'} />
-            </ListItem>
-          </Link>
+          <ListItem onClick={() => setDocsListOpen(!docsListOpen)} button key={'Docs'}>
+            <ListItemIcon><DescriptionIcon /></ListItemIcon>
+            <ListItemText primary={'Docs'} />
+            {docsListOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={docsListOpen} timeout="auto" unmountOnExit >
+            <List>
+              {Object.keys(languages).map(name => {
+                return (
+                <Link key={name} href={`/docs?language=${name}`} passHref >
+                  <ListItem button >
+                    <ListItemIcon>
+                      {languages[name].icon}
+                    </ListItemIcon>
+                    <ListItemText primary={name} />
+                  </ListItem>
+                </Link>
+              );})}
+            </List>
+          </Collapse>
         </List>
+        <Divider />
       </Drawer>
       {renderMobileMenu}
       {renderMenu}

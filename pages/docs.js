@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -12,14 +10,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '../components/appBar';
 import ReadmeDisplay from '../components/readmeDisplay';
 
+import languages from '../config/languages';
+
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     paper: {
       padding: theme.spacing(2),
-    //   backgroundColor: 'white',
-    //   color: 'black'
     },
     modalPaper: {
       position: 'absolute',
@@ -28,22 +26,13 @@ const useStyles = makeStyles((theme) => ({
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
-    }
+    },
   }));
-
-const languages = {
-    'node.js': { url: 'https://github.com/KeySpot/node-api' },
-    'python': { url: 'https://github.com/KeySpot/python-api' },
-};
-
-const querySearch = 'language=';
 
 export default function Docs() {
     const classes = useStyles();
     const router = useRouter();
-    const queryIndex = router.asPath.indexOf(querySearch);
-    const [language, setLanguage] = useState(queryIndex !== -1 && router.asPath.substring(queryIndex + querySearch.length).toLowerCase() in languages ? 
-        router.asPath.substring(queryIndex + querySearch.length).toLowerCase() : 'node.js');
+    const language = router.query.language && router.query.language.toLowerCase() in languages ? router.query.language.toLowerCase() : 'nodejs';
 
     return (
         <div className="background scrollable">
@@ -61,9 +50,9 @@ export default function Docs() {
                             <Tabs
                                 value={language}
                                 indicatorColor="secondary"
-                                onChange={(event, newValue) => setLanguage(newValue)}
+                                onChange={(event, newValue) => router.push(`/docs?language=${newValue}`)}
                             >
-                                {Object.keys(languages).map(name => <Tab key={name} value={name} label={name} />)}
+                                {Object.keys(languages).map(name => <Tab key={name} value={name} label={<>{languages[name].icon}{name}</>} />)}
                             </Tabs>
                             <ReadmeDisplay url={languages[language].url} />
                         </Paper>

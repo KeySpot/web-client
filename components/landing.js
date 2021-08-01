@@ -1,24 +1,18 @@
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+
+import ReactMarkdown from 'react-markdown';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import AppBar from '../components/appBar'; 
 import CodeBlock from '../components/codeBlock';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import { useUser } from '@auth0/nextjs-auth0';
-import { useRouter } from 'next/router';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import InputBase from '@material-ui/core/InputBase';
-import { useState, useCallback } from 'react';
-import Image from 'next/image';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import ReactPlayer from 'react-player';
-import ReactMarkdown from 'react-markdown';
 
-import apiScreenshot from '../public/api-screenshot.png';
-import appDev from '../public/app-dev.jpg';
-import logo from '../public/logo.png';
-import PricingCard from './pricingCard';
 import Footer from './footer';
+
+import appDev from '../public/app-dev.jpg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -70,10 +64,6 @@ export default function LandingCard() {
     const classes = useStyles();
     const router = useRouter();
 
-    const handleContextMenu = useCallback((event) => {
-        event.preventDefault();
-    }, []);
-
     return (
         <Paper className={classes.paper} >
             <Grid className={classes.containerTop} container spacing={3}>
@@ -86,9 +76,6 @@ export default function LandingCard() {
                 <Grid item xs={12}>
                     <Button onClick={() => router.replace('/api/auth/login')} variant="contained" color="secondary" >Sign up for KeySpot</Button>
                 </Grid>
-                {/* <Grid item xs={12}>
-                    <Image src={logo} />
-                </Grid> */}
             </Grid>
 
             <Grid className={classes.container} container spacing={3}>
@@ -97,12 +84,12 @@ export default function LandingCard() {
                 </Grid>
                 <Grid item xs={6}>
                     <ReactMarkdown components={{ code: CodeBlock }} >
-                        {"\nindex.js\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
+                        {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
                     </ReactMarkdown>
                 </Grid>
                 <Grid item xs={6}>
                     <ReactMarkdown components={{ code: CodeBlock }} >
-                        {"terminal\n```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
+                        {"```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
                     </ReactMarkdown>
                 </Grid>
                 <Grid item xs={4}>
