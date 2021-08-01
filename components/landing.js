@@ -127,17 +127,17 @@ export default function LandingCard() {
                     <Typography variant="h6" >Easy to use APIs</Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography variant="h6" >
+                    <Typography>
                         No more juggling .env files and using cloud specific secret managers. KeySpot puts all your variables in one place and is portable to any language and cloud provider.
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography variant="h6" >
+                    <Typography>
                         KeySpot makes it easy to share your records with your team through our auto-generated access keys.
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography variant="h6" >
+                    <Typography>
                     Our APIs are designed to be as easy to use as possible. In just one line of code you can access and update your records in any language.
                     </Typography>
                 </Grid>
