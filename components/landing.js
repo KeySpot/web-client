@@ -2,6 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '../components/appBar'; 
+import CodeBlock from '../components/codeBlock';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
@@ -11,6 +12,7 @@ import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import Button from '@material-ui/core/Button';
 import ReactPlayer from 'react-player';
+import ReactMarkdown from 'react-markdown';
 
 import apiScreenshot from '../public/api-screenshot.png';
 import appDev from '../public/app-dev.jpg';
@@ -62,7 +64,7 @@ const tiers = [
       buttonVariant: 'contained',
       buttonColor: 'secondary',
     },
-  ];
+];
 
 export default function LandingCard() {
     const classes = useStyles();
@@ -110,7 +112,10 @@ export default function LandingCard() {
                         onContextMenu={ handleContextMenu }
 
                     /> */}
-                    <Image src={apiScreenshot} alt="code snippet" />
+                    {/* <Image src={apiScreenshot} alt="code snippet" /> */}
+                    <ReactMarkdown components={{ code: CodeBlock }} >
+                        {"terminal\n```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```\nindex.js\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n```"}
+                    </ReactMarkdown>
                 </Grid>
                 <Grid item xs={4}>
                     <Typography variant="h6" >All environments in one place</Typography>

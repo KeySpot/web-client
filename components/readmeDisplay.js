@@ -2,14 +2,9 @@ import useSWR from 'swr';
 import ReactMarkdown from 'react-markdown';
 
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 
 import CodeBlock from './codeBlock';
 import MarkdownLink from './markdownLink';
-
-const useStyles = makeStyles((theme) => ({
-
-}));
 
 function readmeUrl(githubUrl, branch='main') {
     const oldURL = new URL(githubUrl);
@@ -26,8 +21,7 @@ const components = {
     a: MarkdownLink,
 };
 
-export default function ReadmeDisplay({ url, language }) {
-    const classes = useStyles();
+export default function ReadmeDisplay({ url }) {
     const { data, error } = useSWR(`/api/getReadme?url=${readmeUrl(url)}`, fetcher);
 
     if (error) {

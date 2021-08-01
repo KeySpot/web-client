@@ -1,19 +1,12 @@
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula as syntaxStyle } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        backgroundColor: theme.palette.primary.main,
-        padding: theme.spacing(2)
-    },
-}));
+export default function CodeBlock({ children, className }) {
+    const language = /language-(\w+)/.exec(className || '')[1];
 
-export default function CodeBlock({ children }) {
-    const classes = useStyles();
-    
     return (
-        <Paper variant="outlined" elevation={3} className={classes.paper} >
+        <SyntaxHighlighter language={language} style={syntaxStyle} >
             {children}
-        </Paper>
+        </SyntaxHighlighter>
     );
 }

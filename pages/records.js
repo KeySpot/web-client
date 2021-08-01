@@ -51,7 +51,7 @@ export default function Records() {
   const router = useRouter();
   const { user, isLoading } = useUser();
 
-  if ( !isLoading && !user) router.push('/');
+  if ( !isLoading && !user) router.push('/api/auth/login');
 
   function handleNewRecord() {
     fetch(`/api/newName/${newRecordName}`, { method: 'POST' })

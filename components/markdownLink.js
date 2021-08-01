@@ -3,14 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     link: {
-        // color: theme.palette.primary.contrastText,
+        color: theme.palette.secondary.light,
     },
 }));
 
-export default function MarkdownLink({ children }) {
+export default function MarkdownLink({ children, href }) {
     const classes = useStyles();
     
     return (
-        <Link color="error" >{children}</Link>
+        <Link className={classes.link} href={href} passHref >{children}</Link>
     );
 }

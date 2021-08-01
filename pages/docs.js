@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -31,18 +31,23 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const languages = [
-    { name: 'Node.js', url: 'https://github.com/KeySpot/node-api', language: 'javascript' },
-    { name: 'Python', url: 'https://github.com/KeySpot/python-api', language: 'python' },
-];
+const languages = {
+    'node.js': { url: 'https://github.com/KeySpot/node-api' },
+    'python': { url: 'https://github.com/KeySpot/python-api' },
+};
+
+const querySearch = 'language=';
 
 export default function Docs() {
     const classes = useStyles();
-    const [currentTab, setCurrentTab] = useState(0);
+    const router = useRouter();
+    const queryIndex = router.asPath.indexOf(querySearch);
+    const [language, setLanguage] = useState(queryIndex !== -1 && router.asPath.substring(queryIndex + querySearch.length).toLowerCase() in languages ? 
+        router.asPath.substring(queryIndex + querySearch.length).toLowerCase() : 'node.js');
 
     return (
         <div className="background scrollable">
-            <AppBar hasSearch={true} title="Records" />
+            <AppBar hasSearch={true} title="Docs" />
             <Head>
                 <title>Docs</title>
                 <meta name="description" content="Written by Carl Schader" />
@@ -54,13 +59,13 @@ export default function Docs() {
                     <Container maxWidth="lg" >
                         <Paper className={classes.paper}>
                             <Tabs
-                                value={currentTab}
+                                value={language}
                                 indicatorColor="secondary"
-                                onChange={(event, newValue) => setCurrentTab(newValue)}
+                                onChange={(event, newValue) => setLanguage(newValue)}
                             >
-                                {languages.map(lang => <Tab key={lang.name} label={lang.name} />)}
+                                {Object.keys(languages).map(name => <Tab key={name} value={name} label={name} />)}
                             </Tabs>
-                            <ReadmeDisplay url={languages[currentTab].url} language={languages[currentTab].language} />
+                            <ReadmeDisplay url={languages[language].url} />
                         </Paper>
                     </Container>
                 </div>
