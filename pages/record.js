@@ -73,7 +73,6 @@ export default function AccessKey() {
     const [newName, setNewName] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
 
-    console.log(accessKey)
 
     useEffect(function () {
         if (data) {

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -205,6 +204,26 @@ export default function PrimarySearchAppBar({ title }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  function MenuItems({ loggedIn }) {
+    return loggedIn ?
+    [
+      <MenuItem key="0" >
+        <Link href={`/api/stripe/createCheckoutSession`} passHref >
+          Upgrade
+        </Link>
+      </MenuItem>,
+      <MenuItem key="1" >
+        <Link href={`/api/stripe/createPortalSession`} passHref >
+          Manage Subscription
+        </Link>
+      </MenuItem>,
+      <MenuItem key="2" ><Link href="/api/auth/logout" passHref >Logout</Link></MenuItem>
+    ] :
+    [
+      <MenuItem key="3" ><Link href="/api/auth/login" passHref >Login</Link></MenuItem>
+    ];
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -216,7 +235,7 @@ export default function PrimarySearchAppBar({ title }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => router.replace('/api/auth/logout')}>Logout</MenuItem>
+      <MenuItems loggedIn={user} />
     </Menu>
   );
 
@@ -231,11 +250,7 @@ export default function PrimarySearchAppBar({ title }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {
-        user ?
-        <MenuItem onClick={() => router.replace('/api/auth/logout')}>Logout</MenuItem> :
-        <MenuItem onClick={() => router.replace('/api/auth/login')}>Login</MenuItem>
-      }
+      <MenuItems loggedIn={user} />
     </Menu>
   );
 
@@ -279,7 +294,7 @@ export default function PrimarySearchAppBar({ title }) {
               >
                 <Avatar alt={user.name} src={user.picture} /> 
               </IconButton>   :
-              <Button color="inherit" onClick={() => router.replace('/api/auth/login')}>Login</Button>
+              <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>
             }
           </div>
           <div className={classes.sectionMobile}>

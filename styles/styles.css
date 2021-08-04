@@ -13,7 +13,11 @@ main {
 }
 
 a {
-    color: #FAEBD7;
+    color: #ffffff;
+}
+
+a:link {
+    text-decoration: none;
 }
 
 pre {
