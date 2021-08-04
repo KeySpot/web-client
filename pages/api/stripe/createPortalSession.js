@@ -25,10 +25,14 @@ export default withApiAuthRequired(async function handler(req, res) {
 
     const customerId = data ? data.customerId : null;
 
-    const portalSession = await stripe.billingPortal.sessions.create({
-        customer: customerId,
-        return_url: returnUrl,
-    });
-
-    res.redirect(303, portalSession.url);
+    if (customerId) {
+        const portalSession = await stripe.billingPortal.sessions.create({
+            customer: customerId,
+            return_url: returnUrl,
+        });
+    
+        res.redirect(303, portalSession.url);
+    } else {
+        res.redirect('/api/stripe/createCheckoutSession');
+    }
 });
