@@ -119,7 +119,7 @@ export default function AccessKey() {
     function updateForm() {
         let newData = objectFromRows();
         fetch(`/api/${accessKey}?name=${newName}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
