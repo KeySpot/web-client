@@ -73,6 +73,11 @@ export default function AccessKey() {
     const [newName, setNewName] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
 
+    useEffect(function() {
+        if (!accessKey) {
+            router.push('/records');
+        }
+    });
 
     useEffect(function () {
         if (data) {
@@ -147,7 +152,7 @@ export default function AccessKey() {
     }
 
     let body = [];
-
+    
     if (error) {
         body.push(
             <Grid item xs={12} >

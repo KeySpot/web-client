@@ -269,8 +269,8 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           {/* <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography> */}
-          <Link href="/" passHref>
-            <Image height={32} width={102} src={logo} alt="logo"/>
+          <Link href="/">
+            <a><Image height={32} width={102} src={logo} alt="logo"/></a>
           </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
