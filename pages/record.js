@@ -22,8 +22,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import Fab from '@material-ui/core/Fab';
+
+import Spinner from '../components/spinner';
 import HiddenField from '../components/hiddenField';
 import HiddenInput from '../components/hiddenInput';
+
 import AccessKeyContext from '../context/accessKeyContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -157,6 +160,7 @@ export default function AccessKey() {
         body.push(
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
+                    <Typography variant="h4" >Record</Typography>
                     <Typography variant="h4" >Failed to find that record</Typography>
                 </Paper>
             </Grid>
@@ -165,7 +169,8 @@ export default function AccessKey() {
         body.push(
             <Grid item xs={12} >
                 <Paper className={classes.paper} >
-                    <Typography variant="h4" >Loading...</Typography>
+                    <Typography variant="h4" >Record</Typography>
+                    <Spinner size={100} />
                 </Paper>
             </Grid>
         );

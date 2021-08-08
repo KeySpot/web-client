@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 
 import Typography from '@material-ui/core/Typography';
 
+import Spinner from './spinner';
 import CodeBlock from './codeBlock';
 import MarkdownLink from './markdownLink';
 
@@ -32,9 +33,9 @@ export default function ReadmeDisplay({ url }) {
         );
     } else if (!data) {
         return (
-            <Typography variant="h4" >
-                Loading...
-            </Typography>
+            <div style={{ textAlign: 'center' }}>
+                <Spinner size={100} />
+            </div>
         );
     } else {
         return (

@@ -19,6 +19,9 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
+
+import Spinner from '../components/spinner';
+
 import AccessKeyContext from '../context/accessKeyContext';
 
 
@@ -66,6 +69,7 @@ export default function Records() {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
+            <Typography variant="h4" >Your Records</Typography>
             <Typography className={classes.paperElement} variant="h4" >Failed to load: {error ? error.toString() : ''}</Typography>
           </Paper>
         </Grid>
@@ -74,7 +78,8 @@ export default function Records() {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
-            <Typography className={classes.paperElement} variant="h4" >Loading...</Typography>
+            <Typography variant="h4" >Your Records</Typography>
+            <Spinner size={100} />
           </Paper>
         </Grid>
       );
@@ -82,6 +87,7 @@ export default function Records() {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
+            <Typography variant="h4" >Your Records</Typography>
             <Typography className={classes.paperElement} variant="h4" >You must be logged in to access Records</Typography>
             <Link href="/api/auth/login" passHref ><Button className={classes.paperElement} variant="contained" color="secondary" >Log in</Button></Link>
           </Paper>
