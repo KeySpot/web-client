@@ -84,7 +84,7 @@ export default function Home() {
       <AppBar title={<Image src={logo} alt="logo"/>} />
       <Head>
         <title>KeySpot</title>
-        <meta name="description" content="Written by Carl Schader" />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

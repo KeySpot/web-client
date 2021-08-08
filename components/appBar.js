@@ -207,14 +207,9 @@ export default function PrimarySearchAppBar({ title }) {
   function MenuItems({ loggedIn }) {
     return loggedIn ?
     [
-      <Link key="0" href={`/api/stripe/createCheckoutSession`} passHref >
+      <Link key="0" href={`/api/subscription`} passHref >
         <MenuItem key="0" >
             Upgrade
-        </MenuItem>
-      </Link>,
-      <Link key="1" href={`/api/stripe/createPortalSession`} passHref >
-        <MenuItem key="1" >
-            Manage Subscription
         </MenuItem>
       </Link>,
       <Link key="2" href="/api/auth/logout" passHref ><MenuItem key="2" >Logout</MenuItem></Link>

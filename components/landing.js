@@ -1,16 +1,17 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import ReactMarkdown from 'react-markdown';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import CodeBlock from '../components/codeBlock';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import CodeBlock from './codeBlock';
 import Footer from './footer';
+import PricingCard from './pricingCard';
 
 import appDev from '../public/app-dev.jpg';
 
@@ -44,25 +45,26 @@ const tiers = [
     {
       title: 'Free',
       price: '0',
-      description: ['20 records', '20 variables per record'],
+      description: ['20 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
       buttonText: 'Sign up for free',
       buttonVariant: 'contained',
       buttonColor: 'default',
+      href: '/api/auth/login',
     },
     {
       title: 'Pro',
     //   subheader: 'Most popular',
-      price: '15',
-      description: ['unlimited records', 'unlimited variables per record', 'Priority email and phone support'],
+      price: '5',
+      description: ['Unlimited Records', 'Unlimited Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
       buttonText: 'Get started',
       buttonVariant: 'contained',
       buttonColor: 'secondary',
+      href: '/api/subscription',
     },
 ];
 
 export default function LandingCard() {
     const classes = useStyles();
-    const router = useRouter();
 
     return (
         <Paper className={classes.paper} >
@@ -74,7 +76,9 @@ export default function LandingCard() {
                     <Typography >Whether you are a small team or a large organization, KeySpot gives you the tools to manage environment variables, secrets, and sensitive data for your projects.</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button onClick={() => router.replace('/api/auth/login')} variant="contained" color="secondary" >Sign up for KeySpot</Button>
+                    <Link href="/api/auth/login" passHref>
+                        <Button variant="contained" color="secondary" >Sign up for KeySpot</Button>
+                    </Link>
                 </Grid>
             </Grid>
 
@@ -82,12 +86,12 @@ export default function LandingCard() {
                 <Grid item xs={12}>
                     <Typography variant="h3" >Easy to Use</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <ReactMarkdown components={{ code: CodeBlock }} >
-                        {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
+                        {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
                     </ReactMarkdown>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <ReactMarkdown components={{ code: CodeBlock }} >
                         {"```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
                     </ReactMarkdown>
@@ -136,7 +140,7 @@ export default function LandingCard() {
                 </Grid>
             </Grid>
 
-            {/* <Grid className={classes.container} container spacing={3}>
+            <Grid className={classes.container} container spacing={3}>
                 <Grid item xs={12} >
                     <Typography variant="h3">
                         Pricing
@@ -148,7 +152,7 @@ export default function LandingCard() {
                     </Typography>
                 </Grid>
                     {tiers.map(tier => <Grid item xs={12 / tiers.length}><PricingCard tier={tier} /></Grid>)}
-            </Grid> */}
+            </Grid>
 
             <Grid className={classes.containerBottom} container spacing={3}>
                 <Footer />

@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -90,9 +92,11 @@ export default function PricingCard({ tier }) {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
-                    {tier.buttonText}
-                  </Button>
+                  <Link href={tier.href} passHref>
+                    <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
+                      {tier.buttonText}
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             {/* </Grid>
