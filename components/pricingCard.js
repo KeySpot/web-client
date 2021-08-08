@@ -65,44 +65,44 @@ export default function PricingCard({ tier }) {
       <Container maxWidth="md" component="main">
         {/* <Grid container spacing={5} alignItems="flex-end">
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}> */}
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ${tier.price}
+        <Card>
+          <CardHeader
+            title={tier.title}
+            subheader={tier.subheader}
+            titleTypographyProps={{ align: 'center' }}
+            subheaderTypographyProps={{ align: 'center' }}
+            action={tier.title === 'Pro' ? <StarIcon /> : null}
+            className={classes.cardHeader}
+          />
+          <CardContent>
+            <div className={classes.cardPricing}>
+              <Typography component="h2" variant="h3" color="textPrimary">
+                ${tier.price}
+              </Typography>
+              <Typography variant="h6" color="textSecondary">
+                /mo
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      /mo
-                    </Typography>
-                  </div>
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardActions>
-                  <Link href={tier.href} passHref>
-                    <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
-                      {tier.buttonText}
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
-            {/* </Grid>
+            </div>
+            <ul>
+              {tier.description.map((line) => (
+                <Typography component="li" variant="subtitle1" align="center" key={line}>
+                  {line}
+                </Typography>
+              ))}
+            </ul>
+          </CardContent>
+          <CardActions>
+            <Link href={tier.href} passHref>
+              <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
+                {tier.buttonText}
+              </Button>
+            </Link>
+          </CardActions>
+        </Card>
+        {/* </Grid>
           
         </Grid> */}
       </Container>
-      </React.Fragment>
+    </React.Fragment>
   );
 }
