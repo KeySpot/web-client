@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image'
-
 import { useUser } from '@auth0/nextjs-auth0';
-
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,7 +19,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import AccessKeyContext from '../context/accessKeyContext';
 import Collapse from '@material-ui/core/Collapse';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -33,11 +31,11 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import SubjectIcon from '@material-ui/icons/Subject';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
-
+import HomeIcon from '@material-ui/icons/Home';
 import Responsive from './Responsive';
 import languages from '../config/languages';
 import logo from '../public/logo.png';
+import AccessKeyContext from '../context/accessKeyContext';
 
 const drawerWidth = 240;
 
@@ -276,8 +274,8 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           </Typography> */}
           <Link href="/">
             <a>
-              <Responsive 
-              desktop={<Image height={32} width={102} src={logo} alt="logo" />}
+              <Responsive
+                desktop={<Image height={32} width={102} src={logo} alt="logo" />}
               />
             </a>
           </Link>
@@ -356,13 +354,19 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
         </div>
         <Divider />
         <List>
+          <Link href='/' passHref>
+            <ListItem button key={'Home'}>
+              <ListItemIcon><HomeIcon /></ListItemIcon>
+              <ListItemText primary={'Home'} />
+            </ListItem>
+          </Link>
           <Link href="/records" passHref >
-              <ListItem button key={'Records'}>
-                  <ListItemIcon><SubjectIcon /></ListItemIcon>
-                  <ListItemText primary={'Records'} />
-              </ListItem>
-              </Link>
-          </List>
+            <ListItem button key={'Records'}>
+              <ListItemIcon><SubjectIcon /></ListItemIcon>
+              <ListItemText primary={'Records'} />
+            </ListItem>
+          </Link>
+        </List>
         <Divider />
         <List>
           <ListItem onClick={() => setDocsListOpen(!docsListOpen)} button key={'Docs'}>
@@ -374,15 +378,16 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
             <List>
               {Object.keys(languages).map(name => {
                 return (
-                <Link key={name} href={`/docs?language=${name}`} passHref >
-                  <ListItem button >
-                    <ListItemIcon>
-                      {languages[name].icon}
-                    </ListItemIcon>
-                    <ListItemText primary={name} />
-                  </ListItem>
-                </Link>
-              );})}
+                  <Link key={name} href={`/docs?language=${name}`} passHref >
+                    <ListItem button >
+                      <ListItemIcon>
+                        {languages[name].icon}
+                      </ListItemIcon>
+                      <ListItemText primary={name} />
+                    </ListItem>
+                  </Link>
+                );
+              })}
             </List>
           </Collapse>
         </List>
