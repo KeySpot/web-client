@@ -61,15 +61,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const titleJsx = <Image src={logo} alt="logo" />;
-
 export default function Home() {
   const classes = useStyles();
   const router = useRouter();
   const { user, error, isLoading } = useUser();
   const [searchString, setSearchString] = useState('');
-
-  if (!error && !isLoading && user) router.push('/records');
 
   if (searchString.length > 0) {
     onkeypress = e => {

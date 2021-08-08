@@ -45,7 +45,7 @@ const tiers = [
     {
       title: 'Free',
       price: '0',
-      description: ['20 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
+      description: ['10 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
       buttonText: 'Sign up for free',
       buttonVariant: 'contained',
       buttonColor: 'default',
@@ -151,7 +151,7 @@ export default function LandingCard() {
                         Whether you are a small team or a large organization, empower your team by using KeySpot to manage environment variables, secrets, and sensitive data for your projects.
                     </Typography>
                 </Grid>
-                    {tiers.map(tier => <Grid item xs={12 / tiers.length}><PricingCard tier={tier} /></Grid>)}
+                    {tiers.map(tier => <Grid key={tier.title} item xs={12 / tiers.length}><PricingCard tier={tier} /></Grid>)}
             </Grid>
 
             <Grid className={classes.containerBottom} container spacing={3}>

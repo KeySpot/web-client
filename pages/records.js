@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  paperElement: {
+    margin: theme.spacing(2),
   }
 }));
 
@@ -51,8 +54,6 @@ export default function Records() {
   const router = useRouter();
   const { user, isLoading } = useUser();
 
-  if ( !isLoading && !user) router.push('/api/auth/login');
-
   function handleNewRecord() {
     fetch(`/api/newName/${newRecordName}`, { method: 'POST' })
     .then(response => mutate(data.concat(newRecordName)))
@@ -65,15 +66,24 @@ export default function Records() {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
-            <Typography variant="h4" >Failed to load: {error ? error.toString() : ''}</Typography>
+            <Typography className={classes.paperElement} variant="h4" >Failed to load: {error ? error.toString() : ''}</Typography>
           </Paper>
         </Grid>
       );
-    } else if (!data || !Array.isArray(data)) {
+    } else if (!data) {
       return (
         <Grid item xs={12} >
           <Paper className={classes.paper} >
-            <Typography variant="h4" >Loading...</Typography>
+            <Typography className={classes.paperElement} variant="h4" >Loading...</Typography>
+          </Paper>
+        </Grid>
+      );
+    } else if (!Array.isArray(data)) {
+      return (
+        <Grid item xs={12} >
+          <Paper className={classes.paper} >
+            <Typography className={classes.paperElement} variant="h4" >You must be logged in to access Records</Typography>
+            <Link href="/api/auth/login" passHref ><Button className={classes.paperElement} variant="contained" color="secondary" >Log in</Button></Link>
           </Paper>
         </Grid>
       );

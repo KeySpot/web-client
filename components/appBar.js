@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image'
 
 import { useUser } from '@auth0/nextjs-auth0';
 
@@ -21,6 +22,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccessKeyContext from '../context/accessKeyContext';
 import Collapse from '@material-ui/core/Collapse';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
@@ -33,6 +36,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 
 import languages from '../config/languages';
+import logo from '../public/logo.png';
 
 const drawerWidth = 240;
 
@@ -154,7 +158,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({ title }) {
+const tabMap = {
+  // '/': 0,
+  '/docs': 0,
+  '/records': 1,
+};
+
+export default function PrimarySearchAppBar({ title, currentTab }) {
   const [accessKey, setAccessKey] = useContext(AccessKeyContext);
   const { user, error, isLoading } = useUser(); 
   const router = useRouter();
@@ -253,12 +263,15 @@ export default function PrimarySearchAppBar({ title }) {
     <div className={classes.grow}>
       <AppBar className={classes.AppBar} position="fixed">
         <Toolbar>
-          <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          </IconButton> */}
+          {/* <Typography className={classes.title} variant="h6" noWrap>
             {title}
-          </Typography>
+          </Typography> */}
+          <Link href="/" passHref>
+            <Image height={32} width={102} src={logo} alt="logo"/>
+          </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <VpnKeyIcon />
@@ -273,6 +286,14 @@ export default function PrimarySearchAppBar({ title }) {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
+          <Tabs value={tabMap[router.pathname]} >
+            <Link href="/docs" passHref>
+              <Tab label="Docs" />
+            </Link>
+            <Link href="/records" passHref>
+              <Tab label="records" />
+            </Link>
+          </Tabs>
           <div className={classes.grow} />
           {user ? <Typography noWrap>{user.name}</Typography> : <></>}
           <div className={classes.sectionDesktop}>
@@ -306,7 +327,7 @@ export default function PrimarySearchAppBar({ title }) {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <Drawer
+      {/* <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -353,7 +374,7 @@ export default function PrimarySearchAppBar({ title }) {
           </Collapse>
         </List>
         <Divider />
-      </Drawer>
+      </Drawer> */}
       {renderMobileMenu}
       {renderMenu}
     </div>
