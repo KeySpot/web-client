@@ -4,8 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import Typography from '@material-ui/core/Typography';
 
 import Spinner from './spinner';
-import CodeBlock from './codeBlock';
-import MarkdownLink from './markdownLink';
+import CodeBlock from './CodeBlock';
+import MarkdownLink from './MarkdownLink';
 
 function readmeUrl(githubUrl, branch='main') {
     const oldURL = new URL(githubUrl);

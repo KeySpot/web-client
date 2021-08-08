@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from './appBar';
+import AppBar from './AppBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {

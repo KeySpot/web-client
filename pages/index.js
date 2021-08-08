@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import HtmlBase from '../components/htmlBase';
-import CodeBlock from '../components/codeBlock';
-import Footer from '../components/footer';
-import PricingCard from '../components/pricingCard';
+import HtmlBase from '../components/HtmlBase';
+import CodeBlock from '../components/CodeBlock';
+import Footer from '../components/Footer';
+import PricingCard from '../components/PricingCard';
 import appDev from '../public/app-dev.jpg';
 
 const useStyles = makeStyles(theme => ({

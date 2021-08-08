@@ -4,8 +4,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import HtmlBase from '../components/htmlBase';
-import ReadmeDisplay from '../components/readmeDisplay';
+import HtmlBase from '../components/HtmlBase';
+import ReadmeDisplay from '../components/ReadmeDisplay';
 import languages from '../config/languages';
 
 const useStyles = makeStyles((theme) => ({

@@ -14,8 +14,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import SubjectIcon from '@material-ui/icons/Subject';
-import Modal from '../components/modal';
-import HtmlBase from '../components/htmlBase';
+import Modal from '../components/Modal';
+import HtmlBase from '../components/HtmlBase';
 import Spinner from '../components/spinner';
 import AccessKeyContext from '../context/accessKeyContext';
 

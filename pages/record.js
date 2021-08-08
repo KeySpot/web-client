@@ -18,11 +18,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
-import HtmlBase from '../components/htmlBase';
-import Modal from '../components/modal';
+import HtmlBase from '../components/HtmlBase';
+import Modal from '../components/Modal';
 import Spinner from '../components/spinner';
-import HiddenField from '../components/hiddenField';
-import HiddenInput from '../components/hiddenInput';
+import HiddenField from '../components/HiddenField';
+import HiddenInput from '../components/HiddenInput';
 import shallowEqual from '../lib/shallowEqual';
 import AccessKeyContext from '../context/accessKeyContext';
 
