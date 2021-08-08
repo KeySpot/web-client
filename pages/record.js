@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { Table as T, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -23,6 +24,7 @@ import Modal from '../components/Modal';
 import Spinner from '../components/spinner';
 import HiddenField from '../components/HiddenField';
 import HiddenInput from '../components/HiddenInput';
+import Responsive from '../components/Responsive';
 import shallowEqual from '../lib/shallowEqual';
 import AccessKeyContext from '../context/accessKeyContext';
 
@@ -54,6 +56,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'primary.contrastText',
     textAlign: 'center',
     fontSize: '3em',
+  },
+  mobileTableContainer: {
+    padding: theme.spacing(1),
+    borderBottom: `1px solid ${theme.palette.divider}`,
   }
 }));
 
@@ -176,58 +182,105 @@ export default function AccessKey() {
           <Typography>accessKey: <HiddenField value={accessKey} /></Typography>
         </Paper>
       </Grid>,
-      <Grid item xs={12} >
-        <Paper className={classes.applyPaper} >
-          <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={revertForm} >Revert</Button>
-          <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={updateForm} >Apply</Button>
-          <Button className={classes.applyPaperElement} variant="contained" color="default" disabled={isOwner !== true} onClick={() => setModalOpen(true)} >Delete Record</Button>
-        </Paper>
-      </Grid>,
+      <Responsive
+        desktop={
+          <Grid item xs={12} >
+            <Paper className={classes.applyPaper} >
+              <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={revertForm} >Revert</Button>
+              <Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={updateForm} >Apply</Button>
+              <Button className={classes.applyPaperElement} variant="contained" color="default" disabled={isOwner !== true} onClick={() => setModalOpen(true)} >Delete Record</Button>
+            </Paper>
+          </Grid>
+        }
+        mobile={
+          <Grid item xs={12} >
+            <Paper className={classes.applyPaper} >
+              <Grid container spacing={0}>
+                <Grid item xs={12} ><Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={revertForm} >Revert</Button></Grid>
+                <Grid item xs={12} ><Button className={classes.applyPaperElement} variant="contained" color="secondary" disabled={!hasChanged()} onClick={updateForm} >Apply</Button></Grid>
+                <Grid item xs={12} ><Button className={classes.applyPaperElement} variant="contained" color="default" disabled={isOwner !== true} onClick={() => setModalOpen(true)} >Delete</Button></Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        }
+      />,
       <Grid item xs={12}>
         <Paper className={classes.paper} >
-          {/* <List>md
-                        {items}
-                    </List> */}
-          <TableContainer>
-            <Table className={classes.table} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  {/* <TableCell><AddOutlinedIcon /></TableCell> */}
-                  <TableCell><TextField label="New Key" onChange={e => setNewKey(e.target.value)} value={newKey} /></TableCell>
-                  <TableCell><HiddenInput align="right" label="New Value" onChange={e => setNewValue(e.target.value)} value={newValue} /></TableCell>
-                  <TableCell><Fab variant="contained" color="secondary" disabled={!newKey} onClick={handleAddKvp} ><AddOutlinedIcon /></Fab></TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Key</TableCell>
-                  <TableCell >Value</TableCell>
-                  <TableCell align="right" >Delete</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row, index) => (
-                  <TableRow key={row[0]}>
-                    <TableCell>
-                      <TextField autoFocus={focused ? focused[0] === index && focused[1] === 'key' : false} variant="outlined" onChange={e => handleChangeKey(index, e.target.value)} defaultValue={row[0]} />
-                    </TableCell>
-                    <TableCell>
-                      <HiddenInput autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} />
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton color="secondary" variant="contained" onClick={() => handleDeleteKvp(index)}>
-                        <CancelRoundedIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <Responsive
+            desktop={
+              <TableContainer>
+                <Table className={classes.table} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      {/* <TableCell><AddOutlinedIcon /></TableCell> */}
+                      <TableCell><TextField label="New Key" onChange={e => setNewKey(e.target.value)} value={newKey} /></TableCell>
+                      <TableCell><HiddenInput align="right" label="New Value" onChange={e => setNewValue(e.target.value)} value={newValue} /></TableCell>
+                      <TableCell><Fab variant="contained" color="secondary" disabled={!newKey} onClick={handleAddKvp} ><AddOutlinedIcon /></Fab></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row, index) => (
+
+                      <TableRow key={row[0]}>
+                        <TableCell>
+                          <TextField autoFocus={focused ? focused[0] === index && focused[1] === 'key' : false} variant="outlined" onChange={e => handleChangeKey(index, e.target.value)} defaultValue={row[0]} />
+                        </TableCell>
+                        <TableCell>
+                          <HiddenInput value={row[1]} autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} />
+                        </TableCell>
+                        <TableCell align="right">
+                          <IconButton color="secondary" variant="contained" onClick={() => handleDeleteKvp(index)}>
+                            <CancelRoundedIcon />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            }
+            mobile={
+              <>
+                <Grid align="left" container spacing={3} >
+                  <Grid item xs={12} >
+                    <TextField label="New Key" onChange={e => setNewKey(e.target.value)} value={newKey} />
+                  </Grid>
+                  <Grid item xs={12} >
+                    <HiddenInput align="right" label="New Value" onChange={e => setNewValue(e.target.value)} value={newValue} />
+                  </Grid>
+                  <Grid item xs={12} >
+                    <Fab variant="contained" color="secondary" disabled={!newKey} onClick={handleAddKvp} ><AddOutlinedIcon /></Fab>
+                  </Grid>
+                </Grid>
+                <T>
+                  {/* <Thead>
+                    <Tr>
+                      <Th>Key</Th>
+                      <Th>Value</Th>
+                      <Th>Delete</Th>
+                    </Tr>
+                  </Thead> */}
+                  <Tbody>
+                    {rows.map((row, index) => (
+                      <Tr key={row[0]}>
+                        <Td><TextField autoFocus={focused ? focused[0] === index && focused[1] === 'key' : false} variant="outlined" onChange={e => handleChangeKey(index, e.target.value)} defaultValue={row[0]} /></Td>
+                        <Td><HiddenInput icons={false} value={row[1]} autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} /></Td>
+                        <Td>
+                          <IconButton color="secondary" variant="contained" onClick={() => handleDeleteKvp(index)}>
+                            <CancelRoundedIcon />
+                          </IconButton>
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </T>
+              </>
+            }
+          />
         </Paper>
       </Grid>
     );
   }
-
-
 
   return (
     <HtmlBase title={data ? data.name : 'Record'} >

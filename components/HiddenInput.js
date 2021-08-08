@@ -6,7 +6,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-export default function HiddenInput({ value, label, autoFocus, variant, onChange, defaultValue, defaultHidden=true }) {
+export default function HiddenInput({ value, label, autoFocus, variant, onChange, defaultValue, defaultHidden = true, icons = true }) {
     const [hidden, setHidden] = useState(defaultHidden);
 
     function copyToClipboard() {
@@ -21,8 +21,14 @@ export default function HiddenInput({ value, label, autoFocus, variant, onChange
                     autocomplete: 'off',
                 },
             }} autoComplete="off" value={value} label={label} autoFocus={autoFocus} variant={variant} onChange={onChange} defaultValue={defaultValue} type={hidden ? 'password' : ''} />
-            <Tooltip title={hidden ? 'show' : 'hide'} ><IconButton onClick={() => setHidden(!hidden)} >{hidden ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton></Tooltip>
-            <Tooltip title="Copy to Clipboard" ><IconButton onClick={copyToClipboard} ><FileCopyIcon /></IconButton></Tooltip>
+            {
+                icons ?
+                    <>
+                        <Tooltip title={hidden ? 'show' : 'hide'} ><IconButton onClick={() => setHidden(!hidden)} >{hidden ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton></Tooltip>
+                        <Tooltip title="Copy to Clipboard" ><IconButton onClick={copyToClipboard} ><FileCopyIcon /></IconButton></Tooltip>
+                    </> :
+                    <></>
+            }
         </>
     );
 }

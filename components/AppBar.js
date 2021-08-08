@@ -35,6 +35,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 
+import Responsive from './Responsive';
 import languages from '../config/languages';
 import logo from '../public/logo.png';
 
@@ -166,7 +167,7 @@ const tabMap = {
 
 export default function PrimarySearchAppBar({ title, currentTab }) {
   const [accessKey, setAccessKey] = useContext(AccessKeyContext);
-  const { user, error, isLoading } = useUser(); 
+  const { user, error, isLoading } = useUser();
   const router = useRouter();
 
   const classes = useStyles();
@@ -196,7 +197,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
       }
     }
   }
-  
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -216,17 +217,17 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
 
   function MenuItems({ loggedIn }) {
     return loggedIn ?
-    [
-      <Link key="0" href={`/api/subscription`} passHref >
-        <MenuItem key="0" >
+      [
+        <Link key="0" href={`/api/subscription`} passHref >
+          <MenuItem key="0" >
             Upgrade
         </MenuItem>
-      </Link>,
-      <Link key="2" href="/api/auth/logout" passHref ><MenuItem key="2" >Logout</MenuItem></Link>
-    ] :
-    [
-      <Link key="3" href="/api/auth/login" passHref ><MenuItem key="3" >Login</MenuItem></Link>
-    ];
+        </Link>,
+        <Link key="2" href="/api/auth/logout" passHref ><MenuItem key="2" >Logout</MenuItem></Link>
+      ] :
+      [
+        <Link key="3" href="/api/auth/login" passHref ><MenuItem key="3" >Login</MenuItem></Link>
+      ];
   }
 
   const menuId = 'primary-search-account-menu';
@@ -263,54 +264,66 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
     <div className={classes.grow}>
       <AppBar className={classes.AppBar} position="fixed">
         <Toolbar>
-          {/* <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
+          <Responsive
+            mobile={
+              <IconButton onClick={handleDrawerOpen} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+            }
+          />
           {/* <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography> */}
           <Link href="/">
-            <a><Image height={32} width={102} src={logo} alt="logo"/></a>
-          </Link>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <VpnKeyIcon />
-              </div>
-              <InputBase
-              onChange={e => setSearchString(e.target.value)}
-                placeholder="Access Key"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
+            <a>
+              <Responsive 
+              desktop={<Image height={32} width={102} src={logo} alt="logo" />}
               />
+            </a>
+          </Link>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <VpnKeyIcon />
             </div>
-          <Tabs value={tabMap[router.pathname]} >
-            <Link href="/docs" passHref>
-              <Tab label="Docs" />
-            </Link>
-            <Link href="/records" passHref>
-              <Tab label="records" />
-            </Link>
-          </Tabs>
+            <InputBase
+              onChange={e => setSearchString(e.target.value)}
+              placeholder="Access Key"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <Responsive
+            desktop={
+              <Tabs value={tabMap[router.pathname]} >
+                <Link href="/docs" passHref>
+                  <Tab label="Docs" />
+                </Link>
+                <Link href="/records" passHref>
+                  <Tab label="records" />
+                </Link>
+              </Tabs>
+            }
+          />
           <div className={classes.grow} />
           {user ? <Typography noWrap>{user.name}</Typography> : <></>}
           <div className={classes.sectionDesktop}>
             {
-              user ? 
+              user ?
 
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <Avatar alt={user.name} src={user.picture} /> 
-              </IconButton>   :
-              <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <Avatar alt={user.name} src={user.picture} />
+                </IconButton> :
+                <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>
             }
           </div>
           <div className={classes.sectionMobile}>
@@ -327,7 +340,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      {/* <Drawer
+      <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -374,7 +387,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           </Collapse>
         </List>
         <Divider />
-      </Drawer> */}
+      </Drawer>
       {renderMobileMenu}
       {renderMenu}
     </div>
