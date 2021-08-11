@@ -1,6 +1,7 @@
 import { IconContext } from "react-icons";
 import { DiNodejsSmall, DiPython } from 'react-icons/di';
-import { Golang } from 'grommet-icons';
+import { Icon } from '@iconify/react';
+import golangIcon from '@iconify/icons-grommet-icons/golang';
 
 const style = {
     size: '3em',
@@ -25,6 +26,7 @@ export default {
     },
     go: {
         url: "https://github.com/keyspot/gopackage",
-        icon: <Golang color="white" size="40px" />, 
+        // icon: <Golang color="white" size="40px" />, 
+        icon: <Icon style={{ color: "#ffffff" }} width="40px" icon={golangIcon} />,
     },
 };
