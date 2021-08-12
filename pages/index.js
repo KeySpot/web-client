@@ -37,7 +37,7 @@ const tiers = [
   {
     title: 'Free',
     price: '0',
-    description: ['10 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
+    description: ['20 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
     buttonText: 'Sign up for free',
     buttonVariant: 'contained',
     buttonColor: 'default',

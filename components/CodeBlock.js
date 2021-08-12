@@ -10,7 +10,7 @@ export default function CodeBlock({ children, className }) {
     <Responsive
       desktop={
         <div style={{ textAlign: 'left', fontSize: '1rem' }}>
-          <Typography>{language}</Typography>
+          <Typography style={{ color: "white", paddingLeft: "1rem" }} >{language}</Typography>
           <SyntaxHighlighter language={language} style={syntaxStyle} >
             {children}
           </SyntaxHighlighter>
