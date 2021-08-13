@@ -180,7 +180,7 @@ export default function Home() {
                 </Grid>
                 <Grid item xs={12}>
                   <ReactMarkdown components={{ code: CodeBlock }} >
-                    {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
+                    {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\n// the record's secrets also get stored as environment variables in process.env\nconsole.log(record);\n\n\n```"}
                   </ReactMarkdown>
                 </Grid>
                 <Grid item xs={12}>
