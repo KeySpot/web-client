@@ -237,7 +237,7 @@ export default function Home() {
                     Whether you are a small team or a large organization, empower your team by using KeySpot to manage environment variables, secrets, and sensitive data for your projects.
                     </Typography>
                 </Grid>
-                {/* {tiers.map(tier => <Grid key={tier.title} item xs={12}><PricingCard tier={tier} /></Grid>)} */}
+                {tiers.map(tier => <Grid key={tier.title} item xs={12}><PricingCard tier={tier} /></Grid>)}
               </Grid>
               <Grid className={classes.containerBottom} container spacing={3}>
                 <Footer />
