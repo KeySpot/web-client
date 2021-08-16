@@ -76,12 +76,18 @@ export default function PricingCard({ tier }) {
           />
           <CardContent>
             <div className={classes.cardPricing}>
-              <Typography component="h2" variant="h3" color="textPrimary">
-                ${tier.price}
-              </Typography>
-              <Typography variant="h6" color="textSecondary">
-                /mo
+              {
+                tier.price ?
+                  <>
+                    <Typography component="h2" variant="h3" color="textPrimary">
+                      ${tier.price}
                     </Typography>
+                    <Typography variant="h6" color="textSecondary">
+                      /mo
+                    </Typography>
+                  </> :
+                  <></>
+              }
             </div>
             <ul>
               {tier.description.map((line) => (

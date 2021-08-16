@@ -35,24 +35,24 @@ const useStyles = makeStyles(theme => ({
 
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
-    description: ['20 Records', '20 Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'contained',
-    buttonColor: 'default',
-    href: '/api/auth/login',
-  },
-  {
-    title: 'Pro',
-    //   subheader: 'Most popular',
-    price: '5',
-    description: ['Unlimited Records', 'Unlimited Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
-    buttonText: 'Get started',
+    title: 'Features',
+    // price: '0',
+    description: ['Unlimited Records', 'Unlimited Secrets', 'Unlimited Sharing', 'Unlimited Referencing Accross Projects'],
+    buttonText: 'Sign Up',
     buttonVariant: 'contained',
     buttonColor: 'secondary',
-    href: '/api/subscription',
+    href: '/api/auth/login',
   },
+  // {
+  //   title: 'Pro',
+  //   //   subheader: 'Most popular',
+  //   price: '5',
+  //   description: ['Unlimited Records', 'Unlimited Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
+  //   buttonText: 'Get started',
+  //   buttonVariant: 'contained',
+  //   buttonColor: 'secondary',
+  //   href: '/api/subscription',
+  // },
 ];
 
 export default function Home() {
@@ -133,7 +133,7 @@ export default function Home() {
               <Grid className={classes.container} container spacing={3}>
                 <Grid item xs={12} >
                   <Typography variant="h3">
-                    Pricing
+                    KeySpot is Completely Free
                     </Typography>
                 </Grid>
                 <Grid item cs={12} >
@@ -229,7 +229,7 @@ export default function Home() {
               <Grid className={classes.container} container spacing={3}>
                 <Grid item xs={12} >
                   <Typography variant="h3">
-                    Pricing
+                    KeySpot is Completely Free
                     </Typography>
                 </Grid>
                 <Grid item cs={12} >
@@ -237,7 +237,7 @@ export default function Home() {
                     Whether you are a small team or a large organization, empower your team by using KeySpot to manage environment variables, secrets, and sensitive data for your projects.
                     </Typography>
                 </Grid>
-                {tiers.map(tier => <Grid key={tier.title} item xs={12}><PricingCard tier={tier} /></Grid>)}
+                {/* {tiers.map(tier => <Grid key={tier.title} item xs={12}><PricingCard tier={tier} /></Grid>)} */}
               </Grid>
               <Grid className={classes.containerBottom} container spacing={3}>
                 <Footer />
