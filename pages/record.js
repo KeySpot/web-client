@@ -264,7 +264,7 @@ export default function AccessKey() {
                     {rows.map((row, index) => (
                       <Tr key={row[0]}>
                         <Td><TextField autoFocus={focused ? focused[0] === index && focused[1] === 'key' : false} variant="outlined" onChange={e => handleChangeKey(index, e.target.value)} defaultValue={row[0]} /></Td>
-                        <Td><HiddenInput icons={false} value={row[1]} autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} /></Td>
+                        <Td><HiddenInput icons={true} value={row[1]} autoFocus={focused ? focused[0] === index && focused[1] === 'value' : false} variant="outlined" onChange={e => handleChangeValue(index, e.target.value)} defaultValue={row[1]} /></Td>
                         <Td>
                           <IconButton color="secondary" variant="contained" onClick={() => handleDeleteKvp(index)}>
                             <CancelRoundedIcon />
