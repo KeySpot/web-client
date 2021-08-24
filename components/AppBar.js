@@ -159,8 +159,8 @@ const useStyles = makeStyles((theme) => ({
 
 const tabMap = {
   // '/': 0,
-  '/docs': 0,
-  '/records': 1,
+  'docs': 0,
+  'records': 1,
 };
 
 export default function PrimarySearchAppBar({ title, currentTab }) {
@@ -295,7 +295,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           </div>
           <Responsive
             desktop={
-              <Tabs value={tabMap[router.pathname]} >
+              <Tabs value={tabMap[router.pathname.split('/')[1]]} >
                 <Link href="/docs" passHref>
                   <Tab label="Docs" />
                 </Link>

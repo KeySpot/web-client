@@ -82,7 +82,7 @@ export default function Home() {
                 <Grid item xs={12}>
                   <Typography variant="h3" >Easy to Use</Typography>
                 </Grid>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <ReactMarkdown components={{ code: CodeBlock }} >
                     {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
                   </ReactMarkdown>
@@ -90,6 +90,11 @@ export default function Home() {
                 <Grid item xs={6}>
                   <ReactMarkdown components={{ code: CodeBlock }} >
                     {"```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
+                  </ReactMarkdown>
+                </Grid> */}
+                <Grid item xs={12}>
+                  <ReactMarkdown components={{ code: CodeBlock }} >
+                    {"```bash\n$ keyspot run -c \"npm start\" --key 61045a6e389ee691f945fd34\n\n```"}
                   </ReactMarkdown>
                 </Grid>
                 <Grid item xs={4}>
@@ -178,7 +183,7 @@ export default function Home() {
                 <Grid item xs={12}>
                   <Typography variant="h3" >Easy to Use</Typography>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <ReactMarkdown components={{ code: CodeBlock }} >
                     {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\n// the record's secrets also get stored as environment variables in process.env\nconsole.log(record);\n\n\n```"}
                   </ReactMarkdown>
@@ -186,6 +191,11 @@ export default function Home() {
                 <Grid item xs={12}>
                   <ReactMarkdown components={{ code: CodeBlock }} >
                     {"```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
+                  </ReactMarkdown>
+                </Grid> */}
+                <Grid item xs={12}>
+                  <ReactMarkdown components={{ code: CodeBlock }} >
+                    {"```bash\n$ keyspot run -c \"npm start\" --key 61045a6e389ee691f945fd34\n\n```"}
                   </ReactMarkdown>
                 </Grid>
                 <Grid item xs={12}>

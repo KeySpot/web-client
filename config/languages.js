@@ -1,5 +1,6 @@
 import { IconContext } from "react-icons";
 import { DiNodejsSmall, DiPython } from 'react-icons/di';
+import { BsTerminal as terminal } from 'react-icons/bs';
 import { Icon } from '@iconify/react';
 import golangIcon from '@iconify/icons-grommet-icons/golang';
 
@@ -16,6 +17,10 @@ function wrapIcon(Icon, style) {
 }
 
 export default {
+    "cli-tool": {
+        url: "https://github.com/KeySpot/cli-tool",
+        icon: wrapIcon(terminal, style),
+    },
     nodejs: {
         url: "https://github.com/KeySpot/node-api",
         icon: wrapIcon(DiNodejsSmall, style),
@@ -26,7 +31,6 @@ export default {
     },
     go: {
         url: "https://github.com/keyspot/gopackage",
-        // icon: <Golang color="white" size="40px" />, 
         icon: <Icon style={{ color: "#ffffff" }} width="40px" icon={golangIcon} />,
     },
 };
