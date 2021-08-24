@@ -378,7 +378,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
             <List>
               {Object.keys(languages).map(name => {
                 return (
-                  <Link key={name} href={`/docs?language=${name}`} passHref >
+                  <Link key={name} href={`/docs/${name}`} passHref >
                     <ListItem button >
                       <ListItemIcon>
                         {languages[name].icon}
