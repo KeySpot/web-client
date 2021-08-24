@@ -325,7 +325,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
             }
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton
+            {user ? <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
@@ -333,7 +333,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
               color="inherit"
             >
               <MoreIcon />
-            </IconButton>
+            </IconButton> : <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>}
           </div>
         </Toolbar>
       </AppBar>

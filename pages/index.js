@@ -73,7 +73,7 @@ export default function Home() {
                 </Grid>
                 <Grid item xs={12}>
                   <Link href="/api/auth/login" passHref>
-                    <Button variant="contained" color="secondary" >Sign up for KeySpot</Button>
+                    <Button variant="contained" color="secondary" >Get Started</Button>
                   </Link>
                 </Grid>
               </Grid>
@@ -174,7 +174,7 @@ export default function Home() {
                 </Grid>
                 <Grid item xs={12}>
                   <Link href="/api/auth/login" passHref>
-                    <Button variant="contained" color="secondary" >Sign up for KeySpot</Button>
+                    <Button variant="contained" color="secondary" >Get Started</Button>
                   </Link>
                 </Grid>
               </Grid>
