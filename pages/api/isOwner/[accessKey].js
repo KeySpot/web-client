@@ -18,6 +18,7 @@ export default withApiAuthRequired(async function handler(req, res) {
         const data = await response.json();
         res.json(data.sub === user.sub);
     } catch (error) {
-        res.error(error);
+        res.status(400);
+        res.send();
     }
 });

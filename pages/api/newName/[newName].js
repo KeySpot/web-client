@@ -19,6 +19,7 @@ export default withApiAuthRequired(async function handler(req, res) {
         res.status(200);
         res.send();
     } catch (error) {
-        res.error(error);
+        res.status(400);
+        res.send();
     }
 });
