@@ -11,6 +11,6 @@ export default function MarkdownLink({ children, href }) {
     const classes = useStyles();
     
     return (
-        <Link className={classes.link} href={href} passHref >{children}</Link>
+        <Link className={classes.link} href={href} >{children}</Link>
     );
 }
