@@ -23,15 +23,17 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-205481979-1">
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}>
         </script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){'{'}dataLayer.push(arguments);{'}'}
-          gtag(&apos;js&apos;, new Date());
-
-          gtag(&apos;config&apos;, &apos;{googleAnalyticsId}&apos;);
-        </script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', '${googleAnalyticsId}');`
+          }}
+        />
       </Head>
 
       <main className="main">
