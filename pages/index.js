@@ -37,7 +37,7 @@ const tiers = [
   {
     title: 'Features',
     // price: '0',
-    description: ['Unlimited Records', 'Unlimited Secrets', 'Unlimited Sharing', 'Unlimited Referencing Accross Projects'],
+    description: ['Unlimited Records', 'Unlimited Secrets', 'Unlimited Sharing', 'Unlimited Referencing Across Projects'],
     buttonText: 'Sign Up',
     buttonVariant: 'contained',
     buttonColor: 'secondary',
@@ -47,7 +47,7 @@ const tiers = [
   //   title: 'Pro',
   //   //   subheader: 'Most popular',
   //   price: '5',
-  //   description: ['Unlimited Records', 'Unlimited Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Accross Projects'],
+  //   description: ['Unlimited Records', 'Unlimited Secrets per Record', 'Unlimited Sharing', 'Secrets Referencing', 'Secrets Referencing Across Projects'],
   //   buttonText: 'Get started',
   //   buttonVariant: 'contained',
   //   buttonColor: 'secondary',
