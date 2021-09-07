@@ -28,3 +28,7 @@ pre {
 .scrollable {
     overflow-y: auto;
 }
+
+.noHorizontalScroll {
+    overflow-x: hidden;
+}

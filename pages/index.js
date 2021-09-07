@@ -204,7 +204,7 @@ function Install({ dividers = false }) {
         <Typography variant="h2">Install</Typography>
       </Grid>
       <Grid item xs={12} >
-        <Card>
+        <Card style={{ maxWidth: "100vw" }}>
           <CardContent>
             <SwipeTabs tabs={installTabs} value={value} onChange={index => setValue(index)} />
           </CardContent>

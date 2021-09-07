@@ -18,7 +18,7 @@ export default function CodeBlock({ children, className }) {
       }
       mobile={
         <div style={{ textAlign: 'left', fontSize: '0.67rem' }}>
-          <Typography style={{ color: "white", paddingLeft: "1rem" }} >{language}</Typography>
+          {/* <Typography style={{ color: "white", paddingLeft: "1rem" }} >{language}</Typography> */}
           <SyntaxHighlighter language={language} style={syntaxStyle} >
             {children}
           </SyntaxHighlighter>
