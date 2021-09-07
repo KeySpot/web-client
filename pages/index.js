@@ -393,7 +393,7 @@ export default function Home() {
 
   return (
     <HtmlBase>
-      {/* <Container maxWidth="lg" > */}
+      <Container maxWidth="lg" >
       <Grid container spacing={3}>
         {/* <Paper className={classes.paper} > */}
         <div className={classes.paper} >
@@ -410,7 +410,7 @@ export default function Home() {
           {/* </Paper> */}
         </div>
       </Grid>
-      {/* </Container> */}
+      </Container>
     </HtmlBase>
   );
 }

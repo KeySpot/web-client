@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '3em',
   },
   mobileTableContainer: {
-    padding: theme.spacing(1),
     borderBottom: `1px solid ${theme.palette.divider}`,
   }
 }));
@@ -163,7 +162,7 @@ export default function AccessKey() {
         <div className={classes.paper} >
           <Typography variant="h4" >Record</Typography>
           <Typography variant="h4" >Failed to find that record</Typography>
-        {/* </Paper> */}
+          {/* </Paper> */}
         </div>
       </Grid>
     );
@@ -174,7 +173,7 @@ export default function AccessKey() {
         <div className={classes.paper} >
           <Typography variant="h4" >Record</Typography>
           <Spinner size={100} />
-          </div>
+        </div>
         {/* </Paper> */}
       </Grid>
     );
@@ -182,9 +181,24 @@ export default function AccessKey() {
     body.push(
       <Grid item xs={12} >
         <Paper className={classes.paper} >
-        {/* <div className={classes.paper} > */}
-          <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
-          <Typography>accessKey: <HiddenField value={accessKey} /></Typography>
+          {/* <div className={classes.paper} > */}
+          <Responsive
+            desktop={
+              <>
+                <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
+                <Typography>accessKey: <HiddenField value={accessKey} /></Typography>
+              </>
+            }
+            mobile={
+              <>
+                <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
+                <Grid container justifyContent="center" alignItems="center">
+                  <Grid item xs={3}><Typography>accessKey: </Typography></Grid>
+                  <Grid item xs={9}><HiddenField value={accessKey} /></Grid>
+                </Grid>
+              </>
+            }
+          />
         </Paper>
         {/* </div> */}
       </Grid>,
@@ -212,7 +226,7 @@ export default function AccessKey() {
       />,
       <Grid item xs={12}>
         <Paper className={classes.paper} >
-        {/* <div className={classes.paper} > */}
+          {/* <div className={classes.paper} > */}
           <Responsive
             desktop={
               <TableContainer>
@@ -248,7 +262,7 @@ export default function AccessKey() {
             }
             mobile={
               <>
-                <Grid align="left" container spacing={3} >
+                <Grid align="left" container spacing={3} className={classes.mobileTableContainer} >
                   <Grid item xs={12} >
                     <TextField label="New Key" onChange={e => setNewKey(e.target.value)} value={newKey} />
                   </Grid>
