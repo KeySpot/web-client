@@ -19,7 +19,7 @@ export default function Docs({ content, language }) {
   const router = useRouter();
 
   return (
-    <HtmlBase title="Docs" >
+    <HtmlBase title={"Docs: " + language} >
       <Container maxWidth="lg" >
         {/* <Paper className={classes.paper}> */}
           <Tabs
