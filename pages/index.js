@@ -29,7 +29,7 @@ import SwipeTabs from '../components/SwipeTabs';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    padding: theme.spacing(6),
+    padding: theme.spacing(3),
     textAlign: 'center',
   },
   containerTop: {
@@ -98,6 +98,7 @@ function HeroButton({ href = "", icon = null, title = "", children = null }) {
             variant="extended"
             color="secondary"
             className={classes.heroButton}
+            style={{ width: "18em" }}
           >
             <div className={classes.heroButtonItem} >{icon}</div>
             <div className={classes.heroButtonItem} >{title}</div>
@@ -125,20 +126,49 @@ function Hero({ dividers = false }) {
           mobile={<Typography variant="h5" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
         />
       </Grid>
-      <Grid item xs={6}>
-        <HeroButton
-          href="/api/auth/login"
-          icon={<AccountCircleIcon />}
-          title="Sign Up"
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <HeroButton
-          href="/records"
-          icon={<SubjectIcon />}
-          title="Your Records"
-        />
-      </Grid>
+      <Responsive
+        desktop={[
+          <Grid key={0} item xs={3}></Grid>,
+          <Grid key={1} item xs={3}>
+            <HeroButton
+              href="/api/auth/login"
+              icon={<AccountCircleIcon />}
+              title="Sign Up"
+            />
+          </Grid>,
+          <Grid key={2} item xs={3}>
+            <HeroButton
+              href="/records"
+              icon={<SubjectIcon />}
+              title="Your Records"
+            />
+          </Grid>,
+          <Grid key={3} item xs={3}></Grid>
+        ]}
+        mobile={[
+          <Grid key={0} item xs={12}>
+            <HeroButton
+              href="/api/auth/login"
+              icon={<AccountCircleIcon />}
+              title="Sign Up"
+            />
+          </Grid>,
+          <Grid key={1} item xs={12}>
+            <HeroButton
+              href="/records"
+              icon={<SubjectIcon />}
+              title="Your Records"
+            />
+          </Grid>,
+          <Grid key={2} item xs={12}>
+            <HeroButton
+              href="/docs/cli-tool"
+              icon={<GetAppIcon />}
+              title="Installation Guide"
+            />
+          </Grid>
+        ]}
+      />
     </Grid>
   );
 }
@@ -204,11 +234,11 @@ function Install({ dividers = false }) {
         <Typography variant="h2">Install</Typography>
       </Grid>
       <Grid item xs={12} >
-        <Card style={{ maxWidth: "100vw" }}>
-          <CardContent>
-            <SwipeTabs tabs={installTabs} value={value} onChange={index => setValue(index)} />
-          </CardContent>
-        </Card>
+        {/* <Card>
+          <CardContent> */}
+        <SwipeTabs tabs={installTabs} value={value} onChange={index => setValue(index)} />
+        {/* </CardContent>
+        </Card> */}
       </Grid>
     </Grid>
   );
@@ -363,25 +393,24 @@ export default function Home() {
 
   return (
     <HtmlBase>
-      <Container maxWidth="lg" >
-        <Grid container spacing={3}>
-          {/* <Paper className={classes.paper} > */}
-          <div className={classes.paper} >
-            <Hero />
-            <Install dividers />
-            <Demo dividers />
+      {/* <Container maxWidth="lg" > */}
+      <Grid container spacing={3}>
+        {/* <Paper className={classes.paper} > */}
+        <div className={classes.paper} >
+          <Hero />
+          <Responsive desktop={<Install dividers />} />
+          <Demo dividers />
+          {/* <Testimonial dividers /> */}
 
-            {/* <Testimonial dividers /> */}
+          <Pricing dividers />
 
-            <Pricing dividers />
-
-            <Grid className={classes.containerBottom} container spacing={3}>
-              <Footer />
-            </Grid>
-            {/* </Paper> */}
-          </div>
-        </Grid>
-      </Container>
+          <Grid className={classes.containerBottom} container spacing={3}>
+            <Footer />
+          </Grid>
+          {/* </Paper> */}
+        </div>
+      </Grid>
+      {/* </Container> */}
     </HtmlBase>
   );
 }

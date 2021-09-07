@@ -43,7 +43,11 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
+        flexGrow: 1,
     },
+    content: {
+        
+    }
 }));
 
 // each item in tabs is an object with keys: { label: string, content: jsx }
@@ -78,7 +82,7 @@ export default function SwipeTabs({ tabs = [], value = 0, onChange = index => { 
                 index={value}
                 onChangeIndex={handleChangeIndex}
             >
-                {tabs.map((tab, index) => <TabPanel key={index} value={value} index={index} dir={theme.direction}>{tab.content}</TabPanel>)}
+                {tabs.map((tab, index) => <TabPanel className={classes.content} key={index} value={value} index={index} dir={theme.direction}>{tab.content}</TabPanel>)}
             </SwipeableViews>
         </div>
     );

@@ -16,7 +16,7 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
   const classes = useStyles();
 
   return (
-    <div className="background scrollable">
+    <div className="background scrollable noHorizontalScroll">
       <AppBar />
       <Head>
         <title>{title}</title>
