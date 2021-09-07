@@ -159,28 +159,34 @@ export default function AccessKey() {
   if (error) {
     body.push(
       <Grid item xs={12} >
-        <Paper className={classes.paper} >
+        {/* <Paper className={classes.paper} > */}
+        <div className={classes.paper} >
           <Typography variant="h4" >Record</Typography>
           <Typography variant="h4" >Failed to find that record</Typography>
-        </Paper>
+        {/* </Paper> */}
+        </div>
       </Grid>
     );
   } else if (!data) {
     body.push(
       <Grid item xs={12} >
-        <Paper className={classes.paper} >
+        {/* <Paper className={classes.paper} > */}
+        <div className={classes.paper} >
           <Typography variant="h4" >Record</Typography>
           <Spinner size={100} />
-        </Paper>
+          </div>
+        {/* </Paper> */}
       </Grid>
     );
   } else {
     body.push(
       <Grid item xs={12} >
         <Paper className={classes.paper} >
+        {/* <div className={classes.paper} > */}
           <TextField inputProps={{ className: classes.topTextField }} onChange={e => setNewName(e.target.value)} value={newName} />
           <Typography>accessKey: <HiddenField value={accessKey} /></Typography>
         </Paper>
+        {/* </div> */}
       </Grid>,
       <Responsive
         desktop={
@@ -206,6 +212,7 @@ export default function AccessKey() {
       />,
       <Grid item xs={12}>
         <Paper className={classes.paper} >
+        {/* <div className={classes.paper} > */}
           <Responsive
             desktop={
               <TableContainer>
@@ -278,6 +285,7 @@ export default function AccessKey() {
             }
           />
         </Paper>
+        {/* </div> */}
       </Grid>
     );
   }

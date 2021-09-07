@@ -21,7 +21,7 @@ export default function Docs({ content, language }) {
   return (
     <HtmlBase title="Docs" >
       <Container maxWidth="lg" >
-        <Paper className={classes.paper}>
+        {/* <Paper className={classes.paper}> */}
           <Tabs
             value={language}
             indicatorColor="secondary"
@@ -31,7 +31,7 @@ export default function Docs({ content, language }) {
           </Tabs>
           {/* <ReadmeDisplay url={languages[language].url} /> */}
           <Markdown>{content}</Markdown>
-        </Paper>
+        {/* </Paper> */}
       </Container>
     </HtmlBase>
   );
