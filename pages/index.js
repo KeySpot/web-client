@@ -116,13 +116,13 @@ function Hero({ dividers = false }) {
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
       <Grid item xs={12}>
         <Responsive
-          desktop={<Typography variant="h2">The secret to your coding success</Typography>}
-          mobile={<Typography variant="h3">The secret to your coding success</Typography>}
+          desktop={<Typography variant="h2">Get your dev environment under control with KeySpot</Typography>}
+          mobile={<Typography variant="h2">Build apps in minutes, not hours</Typography>}
         />
       </Grid>
       <Grid item xs={12}>
         <Responsive
-          desktop={<Typography variant="h3" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
+          desktop={<Typography variant="h4" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
           mobile={<Typography variant="h5" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
         />
       </Grid>
