@@ -216,11 +216,11 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
   function MenuItems({ loggedIn }) {
     return loggedIn ?
       [
-        <Link key="0" href={`/api/subscription`} passHref >
-          <MenuItem key="0" >
-            Upgrade
-        </MenuItem>
-        </Link>,
+        // <Link key="0" href={`/api/subscription`} passHref >
+        //   <MenuItem key="0" >
+        //     Upgrade
+        // </MenuItem>
+        // </Link>,
         <Link key="2" href="/api/auth/logout" passHref ><MenuItem key="2" >Logout</MenuItem></Link>
       ] :
       [
