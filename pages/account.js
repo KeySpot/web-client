@@ -90,7 +90,7 @@ export default function Account() {
                     <br />
                     <br />
                     <Typography variant="p">
-                      Once you have generated a new token you will want to save it somewhere secure or immediately configure your CLI Tool with it because you won't be able to see it again on this website after being generated.
+                      Once you have generated a new token you will want to save it somewhere secure or immediately configure your CLI Tool with it because you won&apos;t be able to see it again on this website after being generated.
                     </Typography>
                     <br />
                     <br />
@@ -107,7 +107,7 @@ export default function Account() {
                     token ?
                       <Grid item xs={12}>
                         <Grid container justifyContent="center" alignItems="center">
-                          <Grid item xs={12} align="left"><Typography variant="p">Save this token somewhere secure or configure your CLI tool with it. You won't be able to see it again in the future here. If you lose this token you can generate a new one.</Typography></Grid>
+                          <Grid item xs={12} align="left"><Typography variant="p">Save this token somewhere secure or configure your CLI tool with it. You won&apos;t be able to see it again in the future here. If you lose this token you can generate a new one.</Typography></Grid>
                           <Grid item xs={12}>
                             <Grid container direction="column" className={classes.borderTop} justifyContent="center" alignItems="center">
                               <Grid item xs={12} align="center" ><Typography>Token: </Typography></Grid>
