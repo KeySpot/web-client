@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: "200px",
   },
+  fabItem: {
+    margin: theme.spacing(2),
+    wordBreak: 'break-all',
+  }
 }));
 
 const fetcher = url => fetch(url).then(res => res.json());
@@ -62,7 +66,7 @@ export default function Records() {
         <Grid item xs={12} >
           {/* <Paper className={classes.paper} > */}
           <div className={classes.paper} >
-            <Typography variant="h4" >Your Records</Typography>
+            <Typography variant="h2" >Your Records</Typography>
             <Typography className={classes.paperElement} variant="h4" >Failed to load: {error ? error.toString() : ''}</Typography>
             {/* </Paper> */}
           </div>
@@ -73,7 +77,7 @@ export default function Records() {
         <Grid item xs={12} >
           {/* <Paper className={classes.paper} > */}
           <div className={classes.paper} >
-            <Typography variant="h4" >Your Records</Typography>
+            <Typography variant="h2" >Your Records</Typography>
             <Spinner size={100} />
             {/* </Paper> */}
           </div>
@@ -84,7 +88,7 @@ export default function Records() {
         <Grid item xs={12} >
           {/* <Paper className={classes.paper} > */}
           <div className={classes.paper} >
-            <Typography variant="h4" >Your Records</Typography>
+            <Typography variant="h2" >Your Records</Typography>
             <Typography className={classes.paperElement} variant="h4" >You must be logged in to access Records</Typography>
             <Link href="/api/auth/login" passHref ><Button className={classes.paperElement} variant="contained" color="secondary" >Log in</Button></Link>
             {/* </Paper> */}
@@ -96,26 +100,19 @@ export default function Records() {
         <Responsive
           key={0}
           desktop={
-            <Grid item xs={6}>
-              <CardActionArea
-                onClick={() => setModalOpen(true)}
+            <Grid item xs={12}>
+              <Fab
+                className={classes.fab}
+                color="secondary"
+                onClick={() => setAccessKey(item._id)}
               >
-                <Card className={classes.card} key={0}>
-                  <CardHeader
-                    avatar={<Typography variant="h5">
-                      Add Record
-                    </Typography>}
-                  />
-                  <CardContent>
-                    <AddOutlinedIcon style={{ fontSize: 50 }} />
-                  </CardContent>
-                </Card>
-              </CardActionArea>
+                <AddOutlinedIcon fontSize="large" />
+              </Fab>
             </Grid>
           }
           mobile={
             <Grid item xs={12}>
-              <CardActionArea
+              {/* <CardActionArea
                 onClick={() => setModalOpen(true)}
               >
                 <Card className={classes.card} key={0}>
@@ -128,7 +125,14 @@ export default function Records() {
                     <AddOutlinedIcon style={{ fontSize: 50 }} />
                   </CardContent>
                 </Card>
-              </CardActionArea>
+              </CardActionArea> */}
+              <Fab
+                className={classes.fab}
+                color="secondary"
+                onClick={() => setAccessKey(item._id)}
+              >
+                <AddOutlinedIcon fontSize="large" />
+              </Fab>
             </Grid>
           }
         />
@@ -140,7 +144,7 @@ export default function Records() {
             desktop={
               <Grid item xs={6} >
                 <Link href={`/record`} passHref >
-                  <CardActionArea
+                  {/* <CardActionArea
                     onClick={() => setAccessKey(item._id)}
                   >
                     <Card className={classes.card} key={item._id}>
@@ -153,14 +157,30 @@ export default function Records() {
                         </Typography>
                       </CardContent>
                     </Card>
-                  </CardActionArea>
+                  </CardActionArea> */}
+                  <Fab
+                    variant="extended"
+                    className={classes.fab}
+                    color="primary"
+                    style={{ height: "15em", width: "25em", textTransform: "none" }}
+                    onClick={() => setAccessKey(item._id)}
+                  >
+                    <Grid container>
+                      <Grid item align="left" className={classes.fabItem}><SubjectIcon fontSize="large" /></Grid>
+                      <Grid item align="left" className={classes.fabItem}>
+                        <Typography variant="h5">
+                          {item.name}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Fab>
                 </Link>
               </Grid>
             }
             mobile={
               <Grid item xs={12} >
                 <Link href={`/record`} passHref >
-                  <CardActionArea
+                  {/* <CardActionArea
                     onClick={() => setAccessKey(item._id)}
                   >
                     <Card className={classes.card} key={item._id}>
@@ -173,7 +193,23 @@ export default function Records() {
                         </Typography>
                       </CardContent>
                     </Card>
-                  </CardActionArea>
+                  </CardActionArea> */}
+                  <Fab
+                    variant="extended"
+                    className={classes.fab}
+                    color="primary"
+                    style={{ height: "10em", width: "20em", textTransform: "none" }}
+                    onClick={() => setAccessKey(item._id)}
+                  >
+                    <Grid container>
+                      <Grid item align="left" className={classes.fabItem}><SubjectIcon fontSize="large" /></Grid>
+                      <Grid item align="left" className={classes.fabItem}>
+                        <Typography variant="h5">
+                          {item.name}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Fab>
                 </Link>
               </Grid>
             }
@@ -185,7 +221,7 @@ export default function Records() {
         <Grid key={0} item xs={12}>
           {/* <Paper className={classes.paper} > */}
           <div className={classes.paper} >
-              <Typography className={classes.paperElement} variant="h4" >Your Records</Typography>
+            <Typography className={classes.paperElement} variant="h4" >Your Records</Typography>
             {/* <List> */}
             <Grid container spacing={7}>
               {items}
@@ -200,9 +236,9 @@ export default function Records() {
 
   return (
     <HtmlBase title="Records" >
-        <Grid container spacing={3}>
-          <DataView />
-        </Grid>
+      <Grid container spacing={3}>
+        <DataView />
+      </Grid>
       <Modal
         open={modalOpen}
         onClose={() => {
