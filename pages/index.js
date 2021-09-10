@@ -237,7 +237,7 @@ function Install({ dividers = false }) {
           desktop={<Typography variant="h4">Start using KeySpot today.</Typography>}
         />
       </Grid>
-      <Grid item xs={12} >
+      <Grid item xs={12} align="left" >
         {/* <Card>
           <CardContent> */}
         <SwipeTabs tabs={installTabs} value={value} onChange={index => setValue(index)} />
