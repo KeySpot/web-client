@@ -70,7 +70,7 @@ export default function SwipeTabs({ tabs = [], value = 0, onChange = index => { 
                     value={value}
                     onChange={handleChange}
                     indicatorColor="secondary"
-                    textColor="primary"
+                    // textColor="primary"
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
