@@ -1,7 +1,10 @@
 import process from 'process';
 import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import AppBar from './AppBar';
+import Responsive from './Responsive';
+
 
 const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
 
@@ -37,11 +40,18 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
       </Head>
 
       <main className="main">
-        <div>
-          <div className={classes.root} >
-            {children}
-          </div>
-        </div>
+        <Responsive
+          desktop={
+            <Container spacing={3} className={classes.root} >
+              {children}
+            </Container>
+          }
+          mobile={
+            <div className={classes.root} >
+              {children}
+            </div>
+          }
+        />
       </main>
     </div>
   );

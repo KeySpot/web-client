@@ -393,9 +393,6 @@ export default function Home() {
 
   return (
     <HtmlBase>
-      <Container maxWidth="lg" >
-      <Grid container spacing={3}>
-        {/* <Paper className={classes.paper} > */}
         <div className={classes.paper} >
           <Hero />
           <Responsive desktop={<Install dividers />} />
@@ -407,10 +404,7 @@ export default function Home() {
           <Grid className={classes.containerBottom} container spacing={3}>
             <Footer />
           </Grid>
-          {/* </Paper> */}
         </div>
-      </Grid>
-      </Container>
     </HtmlBase>
   );
 }

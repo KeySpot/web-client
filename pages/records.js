@@ -200,11 +200,9 @@ export default function Records() {
 
   return (
     <HtmlBase title="Records" >
-      <Container maxWidth="lg" >
         <Grid container spacing={3}>
           <DataView />
         </Grid>
-      </Container>
       <Modal
         open={modalOpen}
         onClose={() => {

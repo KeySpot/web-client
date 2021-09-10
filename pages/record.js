@@ -306,11 +306,9 @@ export default function AccessKey() {
 
   return (
     <HtmlBase title={data ? data.name : 'Record'} >
-      <Container maxWidth="lg" >
-        <Grid container spacing={3}>
-          {body}
-        </Grid>
-      </Container>
+      <Grid container spacing={3}>
+        {body}
+      </Grid>
       {
         data ?
           <Modal

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    margin: '10px',
+    margin: 'auto',
     padding: '10px',
     wordBreak: 'break-all',
   },
@@ -64,13 +64,13 @@ export default function Account() {
           <Grid container direction="column" spacing={5}>
             <Grid item>
               <Paper className={classes.paper} >
-                <Grid container direction="row" alignItems="center" justifyContent="center" spacing={3}>
+                <Grid container direction="column" alignItems="center" justifyContent="center" spacing={3}>
                   <Grid align="center" item xs={12}><Avatar alt={user.name} src={user.picture} style={{ height: "5em", width: '5em' }} /></Grid>
                   <Grid item xs={12}><Typography variant="h5" >{user.name}</Typography></Grid>
-                  <Grid item xs={3} />
-                  <Grid item xs={9}><Typography variant="h6" align="left">Email: {user.email}</Typography></Grid>
-                  <Grid item xs={3} />
-                  <Grid item xs={9}><Typography variant="h6" align="left">Sub Id: {user.sub}</Typography></Grid>
+                  {/* <Grid item xs={3} /> */}
+                  <Grid item xs={12}><Typography variant="h6" align="center">Email: {user.email}</Typography></Grid>
+                  {/* <Grid item xs={3} /> */}
+                  <Grid item xs={12}><Typography variant="h6" align="center">Sub Id: {user.sub}</Typography></Grid>
                 </Grid>
               </Paper>
             </Grid>
@@ -129,12 +129,8 @@ export default function Account() {
 
   return (
     <HtmlBase title="Account" >
-      <Container className={classes.root} maxWidth="lg" >
-        <Grid container spacing={3}>
-          <Grid item xs={12}><Typography variant="h4" >Account</Typography></Grid>
+          <Grid item xs={12} align="center"><Typography variant="h4" >Account</Typography></Grid>
           <UserData />
-        </Grid>
-      </Container>
     </HtmlBase>
   );
 }

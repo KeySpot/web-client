@@ -32,6 +32,7 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import HomeIcon from '@material-ui/icons/Home';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Responsive from './Responsive';
 import languages from '../config/languages';
 import logo from '../public/logo.png';
@@ -160,7 +161,8 @@ const useStyles = makeStyles((theme) => ({
 const tabMap = {
   // '/': 0,
   'docs': 0,
-  'records': 1,
+  'account' : 1,
+  'records': 2,
 };
 
 export default function PrimarySearchAppBar({ title, currentTab }) {
@@ -299,6 +301,9 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
                 <Link href="/docs" passHref>
                   <Tab label="Docs" />
                 </Link>
+                <Link href="/account" passHref>
+                  <Tab label="account" />
+                </Link>
                 <Link href="/records" passHref>
                   <Tab label="records" />
                 </Link>
@@ -364,6 +369,12 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
             <ListItem button key={'Records'}>
               <ListItemIcon><SubjectIcon /></ListItemIcon>
               <ListItemText primary={'Records'} />
+            </ListItem>
+          </Link>
+          <Link href="/account" passHref >
+            <ListItem button key={'Account'}>
+              <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+              <ListItemText primary={'Account'} />
             </ListItem>
           </Link>
         </List>
