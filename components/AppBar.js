@@ -322,11 +322,11 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
                   aria-controls={menuId}
                   aria-haspopup="true"
                   onClick={handleProfileMenuOpen}
-                  color="inherit"
+                  color="secondary"
                 >
                   <Avatar alt={user.name} src={user.picture} />
                 </IconButton> :
-                <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>
+                <Button variant="contained" color="secondary"><Link href="/api/auth/login" passHref >Login</Link></Button>
             }
           </div>
           <div className={classes.sectionMobile}>
@@ -335,10 +335,10 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              color="secondaey"
             >
               <MoreIcon />
-            </IconButton> : <Button color="inherit"><Link href="/api/auth/login" passHref >Login</Link></Button>}
+            </IconButton> : <Button variant="contained" color="secondary"><Link href="/api/auth/login" passHref >Login</Link></Button>}
           </div>
         </Toolbar>
       </AppBar>
