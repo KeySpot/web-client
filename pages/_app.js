@@ -8,6 +8,7 @@ import { createTheme } from '@material-ui/core/styles';
 import AccessKeyContext from '../context/accessKeyContext.js';
 import colors from '../public/colors.json';
 import '../styles/styles.css';
+import '../styles/terminal.css';
 
 const theme = createTheme(colors);
 

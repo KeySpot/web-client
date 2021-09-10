@@ -24,8 +24,8 @@ import Fab from '@material-ui/core/Fab';
 import SubjectIcon from '@material-ui/icons/Subject';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Terminal from 'react-animated-term';
 import SwipeTabs from '../components/SwipeTabs';
-
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -160,13 +160,13 @@ function Hero({ dividers = false }) {
               title="Your Records"
             />
           </Grid>,
-          <Grid key={2} item xs={12}>
-            <HeroButton
-              href="/docs/cli-tool"
-              icon={<GetAppIcon />}
-              title="Installation Guide"
-            />
-          </Grid>
+          // <Grid key={2} item xs={12}>
+          //   <HeroButton
+          //     href="/docs/cli-tool"
+          //     icon={<GetAppIcon />}
+          //     title="Installation Guide"
+          //   />
+          // </Grid>
         ]}
       />
     </Grid>
@@ -232,6 +232,7 @@ function Install({ dividers = false }) {
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
       <Grid item xs={12}>
         <Typography variant="h2">Install</Typography>
+        <Typography variant="h4">Start using KeySpot on your command line today.</Typography>
       </Grid>
       <Grid item xs={12} >
         {/* <Card>
@@ -246,6 +247,38 @@ function Install({ dividers = false }) {
 
 function Demo({ dividers = false }) {
   const classes = useStyles();
+  const spinner = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+
+  const lines = [
+    {
+      text: 'keyspot run myWebApp -r myRecord',
+      cmd: true,
+    },
+    {
+      text: '',
+      cmd: false,
+    },
+    {
+      text: '👍 App setup complete. All environment variables are here with no .env file needed. Thanks KeySpot!',
+      cmd: false,
+      repeat: true,
+      repeatCount: 2,
+      frames: spinner.map(spinner => {
+        return {
+          text: spinner + ' Setting up app',
+          delay: 80
+        }
+      })
+    },
+    {
+      text: '',
+      cmd: false,
+    },
+    {
+      text: 'Web App is running on PORT 8080',
+      cmd: false,
+    },
+  ];
 
   return (
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
@@ -265,10 +298,16 @@ function Demo({ dividers = false }) {
       <Grid item xs={12}>
         <Typography variant="h4" >Inject your stored secrets right into your programs as environment variables.</Typography>
       </Grid>
-      <Grid item xs={12}>
-        <ReactMarkdown components={{ code: CodeBlock }} >
+      <Grid item xs={12} align="left" style={{ fontSize: "3rm" }}>
+        {/* <ReactMarkdown components={{ code: CodeBlock }} >
           {"```bash\n$ keyspot run \"your program\" --key 61045a6e389ee691f945fd34\n\n```"}
-        </ReactMarkdown>
+        </ReactMarkdown> */}
+        <Terminal
+          white
+          lines={lines}
+          interval={80}
+          height={280}
+        />
       </Grid>
 
       <Responsive
@@ -287,9 +326,9 @@ function Demo({ dividers = false }) {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Typography variant="h5" >Easy to use APIs</Typography>
+              <Typography variant="h5" >Easy to use API</Typography>
               <Typography variant="body2">
-                Our APIs are designed to be as easy to use as possible. In just one line of code you can access and update your records in any language.
+                Our API is designed to be as easy to use as possible. With one terminal command or one line of code, you can access and update your records.
               </Typography>
             </Grid>
           </>
@@ -393,18 +432,19 @@ export default function Home() {
 
   return (
     <HtmlBase>
-        <div className={classes.paper} >
-          <Hero />
-          <Responsive desktop={<Install dividers />} />
-          <Demo dividers />
-          {/* <Testimonial dividers /> */}
+      <div className={classes.paper} >
+        <Hero />
+        <Demo dividers />
+        <Install dividers />
+        <Responsive desktop={<Install dividers />} />
+        {/* <Testimonial dividers /> */}
 
-          <Pricing dividers />
+        <Pricing dividers />
 
-          <Grid className={classes.containerBottom} container spacing={3}>
-            <Footer />
-          </Grid>
-        </div>
+        <Grid className={classes.containerBottom} container spacing={3}>
+          <Footer />
+        </Grid>
+      </div>
     </HtmlBase>
   );
 }
