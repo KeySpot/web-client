@@ -107,9 +107,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.black, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -277,7 +277,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           <Link href="/">
             <a>
               <Responsive
-                desktop={<Image height={32} width={102} src={logo} alt="logo" />}
+                desktop={<Image height={32} width={96} src={logo} alt="logo" />}
               />
             </a>
           </Link>

@@ -129,7 +129,7 @@ export default function Account() {
 
   return (
     <HtmlBase title="Account" >
-          <Grid item xs={12} align="center"><Typography variant="h4" >Account</Typography></Grid>
+          <Grid item xs={12} align="center"><Typography variant="h2" >Account</Typography></Grid>
           <UserData />
     </HtmlBase>
   );

@@ -74,7 +74,7 @@ const footers = [
   // },
   {
     title: 'Contact us',
-    description: ['Email: support@plandid.app', 'Phone: (720) 413-6933', ],
+    description: ['support@plandid.app', '(720) 413-6933', ],
     hrefs: [],
   },
   // {

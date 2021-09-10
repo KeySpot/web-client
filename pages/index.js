@@ -287,7 +287,7 @@ function DemoTerminal() {
         white
         lines={lines}
         interval={80}
-        height={280}
+        height={window.innerWidth > 320 ? 280 : 360}
       />
     </Grid>
   );
