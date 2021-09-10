@@ -117,13 +117,13 @@ function Hero({ dividers = false }) {
       <Grid item xs={12}>
         <Responsive
           desktop={<Typography variant="h2">Get your dev environment under control with KeySpot</Typography>}
-          mobile={<Typography variant="h2">Build apps in minutes, not hours</Typography>}
+          mobile={<Typography variant="h4">Get your dev environment under control with KeySpot</Typography>}
         />
       </Grid>
       <Grid item xs={12}>
         <Responsive
           desktop={<Typography variant="h4" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
-          mobile={<Typography variant="h5" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
+          // mobile={<Typography variant="p" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
         />
       </Grid>
       <Responsive
@@ -160,6 +160,7 @@ function Hero({ dividers = false }) {
               title="Your Records"
             />
           </Grid>,
+          <DemoTerminal key={2} />
           // <Grid key={2} item xs={12}>
           //   <HeroButton
           //     href="/docs/cli-tool"
@@ -232,7 +233,9 @@ function Install({ dividers = false }) {
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
       <Grid item xs={12}>
         <Typography variant="h2">Install</Typography>
-        <Typography variant="h4">Start using KeySpot on your command line today.</Typography>
+        <Responsive
+          desktop={<Typography variant="h4">Start using KeySpot today.</Typography>}
+        />
       </Grid>
       <Grid item xs={12} >
         {/* <Card>
@@ -245,10 +248,8 @@ function Install({ dividers = false }) {
   );
 }
 
-function Demo({ dividers = false }) {
-  const classes = useStyles();
+function DemoTerminal() {
   const spinner = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
-
   const lines = [
     {
       text: 'keyspot run myWebApp -r myRecord',
@@ -281,35 +282,30 @@ function Demo({ dividers = false }) {
   ];
 
   return (
+    <Grid item xs={12} align="left" style={{ fontSize: "3rm" }}>
+      <Terminal
+        white
+        lines={lines}
+        interval={80}
+        height={280}
+      />
+    </Grid>
+  );
+
+}
+
+function Demo({ dividers = false }) {
+  const classes = useStyles();
+
+  return (
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
       <Grid item xs={12}>
         <Typography variant="h2" >Say goodbye to .env files</Typography>
       </Grid>
-      {/* <Grid item xs={6}>
-                  <ReactMarkdown components={{ code: CodeBlock }} >
-                    {"\n```javascript\nconst keyspot = require('keyspot');\n\nconst record = await keyspot('61045a6e389ee691f945fd34');\n\nconsole.log(record);\n\n\n```"}
-                  </ReactMarkdown>
-                </Grid>
-                <Grid item xs={6}>
-                  <ReactMarkdown components={{ code: CodeBlock }} >
-                    {"```bash\n$ npm i keyspot\n$ node index.js\n\n{\n\tapiKey: asi12mdkKAWS21d,\n\tenvironment: prod\n}\n```"}
-                  </ReactMarkdown>
-                </Grid> */}
       <Grid item xs={12}>
         <Typography variant="h4" >Inject your stored secrets right into your programs as environment variables.</Typography>
       </Grid>
-      <Grid item xs={12} align="left" style={{ fontSize: "3rm" }}>
-        {/* <ReactMarkdown components={{ code: CodeBlock }} >
-          {"```bash\n$ keyspot run \"your program\" --key 61045a6e389ee691f945fd34\n\n```"}
-        </ReactMarkdown> */}
-        <Terminal
-          white
-          lines={lines}
-          interval={80}
-          height={280}
-        />
-      </Grid>
-
+      <DemoTerminal />
       <Responsive
         desktop={
           <>
@@ -434,9 +430,10 @@ export default function Home() {
     <HtmlBase>
       <div className={classes.paper} >
         <Hero />
-        <Demo dividers />
+        <Responsive
+          desktop={<Demo dividers />}
+        />
         <Install dividers />
-        <Responsive desktop={<Install dividers />} />
         {/* <Testimonial dividers /> */}
 
         <Pricing dividers />
