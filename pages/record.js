@@ -1,9 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { Table as T, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import { Table as T, Tbody, Tr, Td } from 'react-super-responsive-table'
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -21,12 +20,13 @@ import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 import HtmlBase from '../components/HtmlBase';
 import Modal from '../components/Modal';
-import Spinner from '../components/spinner';
 import HiddenField from '../components/HiddenField';
 import HiddenInput from '../components/HiddenInput';
 import Responsive from '../components/Responsive';
 import shallowEqual from '../lib/shallowEqual';
 import AccessKeyContext from '../context/accessKeyContext';
+import ErrorMessage from '../components/ErrorMessage';
+import Loading from '../components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -157,25 +157,11 @@ export default function AccessKey() {
 
   if (error) {
     body.push(
-      <Grid item xs={12} >
-        {/* <Paper className={classes.paper} > */}
-        <div className={classes.paper} >
-          <Typography variant="h4" >Record</Typography>
-          <Typography variant="h4" >Failed to find that record</Typography>
-          {/* </Paper> */}
-        </div>
-      </Grid>
+      <ErrorMessage message={error.toString()} />
     );
   } else if (!data) {
     body.push(
-      <Grid item xs={12} >
-        {/* <Paper className={classes.paper} > */}
-        <div className={classes.paper} >
-          <Typography variant="h4" >Record</Typography>
-          <Spinner size={100} />
-        </div>
-        {/* </Paper> */}
-      </Grid>
+      <Loading />
     );
   } else {
     body.push(

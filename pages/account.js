@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useUser } from '@auth0/nextjs-auth0';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
@@ -8,9 +7,11 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import HtmlBase from '../components/HtmlBase';
-import Spinner from '../components/spinner';
 import Markdown from '../components/Markdown';
 import HiddenField from '../components/HiddenField';
+import requireLogin from '../hooks/requireLogin';
+import ErrorMessage from '../components/ErrorMessage';
+import Loading from '../components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Account() {
   const classes = useStyles();
-  const { user, error, isLoading } = useUser();
+  const { user, error, isLoading } = requireLogin();
   const [token, setToken] = useState('');
 
   async function handleClick() {
@@ -41,23 +42,9 @@ export default function Account() {
 
   function UserData() {
     if (error) {
-      return (
-        <Grid container direction="column" alignItems="center" justifyContent="center">
-          <Typography className={classes.paperElement} variant="h3" >Failed to load: {error ? error.toString() : ''}</Typography>
-        </Grid>
-      );
+      return <ErrorMessage message={error.toString()} />;
     } else if (isLoading) {
-      return (
-        <Grid container direction="column" alignItems="center" justifyContent="center">
-          <Grid item><Spinner className="centerScreenImage" size={100} /></Grid>
-        </Grid>
-      );
-    } else if (!user) {
-      return (
-        <Grid container direction="column" alignItems="center" justifyContent="center">
-          <Grid item xs={12}><Typography variant="h3" >You must be logged in to view account information</Typography></Grid>
-        </Grid>
-      );
+      return <Loading />
     } else {
       return (
         <Grid item xs={12}>

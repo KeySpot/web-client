@@ -2,29 +2,20 @@ import { useState, useContext } from 'react';
 import Link from 'next/link';
 import useSWR from 'swr';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-import AddIcon from '@material-ui/icons/Add';
 import SubjectIcon from '@material-ui/icons/Subject';
 import Modal from '../components/Modal';
 import HtmlBase from '../components/HtmlBase';
-import Spinner from '../components/spinner';
 import AccessKeyContext from '../context/accessKeyContext';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
 import Fab from '@material-ui/core/Fab';
 import Responsive from '../components/Responsive';
+import requireLogin from '../hooks/requireLogin';
+import ErrorMessage from '../components/ErrorMessage';
+import Loading from '../components/Loading';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 const fetcher = url => fetch(url).then(res => res.json());
 
 export default function Records() {
-  const [accessKey, setAccessKey] = useContext(AccessKeyContext);
+  requireLogin();
+  const [_, setAccessKey] = useContext(AccessKeyContext);
   const { data, error, mutate } = useSWR('/api/accessKeys', fetcher);
   const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
@@ -62,39 +54,9 @@ export default function Records() {
 
   function DataView() {
     if (error) {
-      return (
-        <Grid item xs={12} >
-          {/* <Paper className={classes.paper} > */}
-          <div className={classes.paper} >
-            <Typography variant="h2" >Your Records</Typography>
-            <Typography className={classes.paperElement} variant="h4" >Failed to load: {error ? error.toString() : ''}</Typography>
-            {/* </Paper> */}
-          </div>
-        </Grid>
-      );
-    } else if (!data) {
-      return (
-        <Grid item xs={12} >
-          {/* <Paper className={classes.paper} > */}
-          <div className={classes.paper} >
-            <Typography variant="h2" >Your Records</Typography>
-            <Spinner size={100} />
-            {/* </Paper> */}
-          </div>
-        </Grid>
-      );
-    } else if (!Array.isArray(data)) {
-      return (
-        <Grid item xs={12} >
-          {/* <Paper className={classes.paper} > */}
-          <div className={classes.paper} >
-            <Typography variant="h2" >Your Records</Typography>
-            <Typography className={classes.paperElement} variant="h4" >You must be logged in to access Records</Typography>
-            <Link href="/api/auth/login" passHref ><Button className={classes.paperElement} variant="contained" color="secondary" >Log in</Button></Link>
-            {/* </Paper> */}
-          </div>
-        </Grid>
-      );
+      return <ErrorMessage message={error.toString()} />;
+    } else if (!data || !Array.isArray(data)) {
+      return <Loading />;
     } else {
       let items = [
         <Responsive
@@ -112,20 +74,6 @@ export default function Records() {
           }
           mobile={
             <Grid item xs={12}>
-              {/* <CardActionArea
-                onClick={() => setModalOpen(true)}
-              >
-                <Card className={classes.card} key={0}>
-                  <CardHeader
-                    avatar={<Typography variant="h5">
-                      Add Record
-                    </Typography>}
-                  />
-                  <CardContent>
-                    <AddOutlinedIcon style={{ fontSize: 50 }} />
-                  </CardContent>
-                </Card>
-              </CardActionArea> */}
               <Fab
                 className={classes.fab}
                 color="secondary"
@@ -144,20 +92,6 @@ export default function Records() {
             desktop={
               <Grid item xs={6} >
                 <Link href={`/record`} passHref >
-                  {/* <CardActionArea
-                    onClick={() => setAccessKey(item._id)}
-                  >
-                    <Card className={classes.card} key={item._id}>
-                      <CardHeader
-                        avatar={<SubjectIcon fontSize="large" />}
-                      />
-                      <CardContent>
-                        <Typography variant="h4">
-                          {item.name}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </CardActionArea> */}
                   <Fab
                     variant="extended"
                     className={classes.fab}
@@ -180,20 +114,6 @@ export default function Records() {
             mobile={
               <Grid item xs={12} >
                 <Link href={`/record`} passHref >
-                  {/* <CardActionArea
-                    onClick={() => setAccessKey(item._id)}
-                  >
-                    <Card className={classes.card} key={item._id}>
-                      <CardHeader
-                        avatar={<SubjectIcon fontSize="large" />}
-                      />
-                      <CardContent>
-                        <Typography variant="h4">
-                          {item.name}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </CardActionArea> */}
                   <Fab
                     variant="extended"
                     className={classes.fab}
@@ -219,15 +139,11 @@ export default function Records() {
 
       return [
         <Grid key={0} item xs={12}>
-          {/* <Paper className={classes.paper} > */}
           <div className={classes.paper} >
-            <Typography className={classes.paperElement} variant="h4" >Your Records</Typography>
-            {/* <List> */}
+            <Typography className={classes.paperElement} variant="h2" >Records</Typography>
             <Grid container spacing={7}>
               {items}
             </Grid>
-            {/* </List> */}
-            {/* </Paper> */}
           </div>
         </Grid>
       ];
