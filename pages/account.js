@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -121,6 +121,15 @@ export default function Account() {
                 </Grid>
               </Paper>
             </Grid>
+            <Grid item>
+              <Paper className={classes.paper} >
+                <Grid item align="center">
+                  <Link href="/api/auth/logout" passHref>
+                    <Button color="secondary">logout</Button>
+                  </Link>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
       );
@@ -129,8 +138,8 @@ export default function Account() {
 
   return (
     <HtmlBase title="Account" >
-          <Grid item xs={12} align="center"><Typography variant="h2" >Account</Typography></Grid>
-          <UserData />
+      <Grid item xs={12} align="center"><Typography variant="h2" >Account</Typography></Grid>
+      <UserData />
     </HtmlBase>
   );
 }

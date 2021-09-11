@@ -13,10 +13,6 @@ main {
     margin-bottom: 1rem;     */
 }
 
-a {
-    color: #ffffff;
-}
-
 a:link {
     text-decoration: none;
 }
