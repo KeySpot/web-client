@@ -66,7 +66,7 @@ export default function Records() {
               <Fab
                 className={classes.fab}
                 color="secondary"
-                onClick={() => setAccessKey(item._id)}
+                onClick={() => setModalOpen(true)}
               >
                 <AddOutlinedIcon fontSize="large" />
               </Fab>
@@ -77,7 +77,7 @@ export default function Records() {
               <Fab
                 className={classes.fab}
                 color="secondary"
-                onClick={() => setAccessKey(item._id)}
+                onClick={() => setModalOpen(true)}
               >
                 <AddOutlinedIcon fontSize="large" />
               </Fab>
