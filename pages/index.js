@@ -1,31 +1,24 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import ReactMarkdown from 'react-markdown';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import HtmlBase from '../components/HtmlBase';
 import Responsive from '../components/Responsive';
 import CodeBlock from '../components/CodeBlock';
 import Footer from '../components/Footer';
 import PricingCard from '../components/PricingCard';
 import appDev from '../public/app-dev.jpg';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Fab from '@material-ui/core/Fab';
 import SubjectIcon from '@material-ui/icons/Subject';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Terminal from 'react-animated-term';
-import SwipeTabs from '../components/SwipeTabs';
+
+const SwipeTabs = dynamic(() => import('../components/SwipeTabs'));
+const Terminal = dynamic(() => import('react-animated-term'));
 
 const useStyles = makeStyles(theme => ({
   paper: {

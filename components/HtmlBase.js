@@ -1,9 +1,11 @@
 import process from 'process';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import AppBar from './AppBar';
 import Responsive from './Responsive';
+
+const AppBar = dynamic(() => import('./AppBar'));
 
 
 const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
