@@ -9,11 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import HtmlBase from '../components/HtmlBase';
 import Responsive from '../components/Responsive';
 import CodeBlock from '../components/CodeBlock';
+import InstallTabs from '../components/InstallTabs';
 import Footer from '../components/Footer';
 import PricingCard from '../components/PricingCard';
 import appDev from '../public/app-dev.jpg';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 import Fab from '@material-ui/core/Fab';
 import SubjectIcon from '@material-ui/icons/Subject';
 
@@ -116,51 +117,58 @@ function Hero({ dividers = false }) {
       <Grid item xs={12}>
         <Responsive
           desktop={<Typography variant="h4" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
-          // mobile={<Typography variant="p" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
+        // mobile={<Typography variant="p" >Store, use and share environment variables from the command line. Or right in your code with KeySpot.</Typography>}
         />
       </Grid>
       <Responsive
         desktop={[
           <Grid key={0} item xs={3}></Grid>,
-          <Grid key={1} item xs={3}>
+          // <Grid key={1} item xs={3}>
+          //   <HeroButton
+          //     href="/api/auth/login"
+          //     icon={<AccountCircleIcon />}
+          //     title="Sign Up"
+          //   />
+          // </Grid>,
+          // <Grid key={2} item xs={3}>
+          //   <HeroButton
+          //     href="/records"
+          //     icon={<SubjectIcon />}
+          //     title="Your Records"
+          //   />
+          // </Grid>,
+          <Grid key={2} item xs={12}>
             <HeroButton
-              href="/api/auth/login"
-              icon={<AccountCircleIcon />}
-              title="Sign Up"
-            />
-          </Grid>,
-          <Grid key={2} item xs={3}>
-            <HeroButton
-              href="/records"
-              icon={<SubjectIcon />}
-              title="Your Records"
+              href="/tutorial"
+              icon={<ChevronRight />}
+              title="Get started"
             />
           </Grid>,
           <Grid key={3} item xs={3}></Grid>
         ]}
         mobile={[
-          <Grid key={0} item xs={12}>
-            <HeroButton
-              href="/api/auth/login"
-              icon={<AccountCircleIcon />}
-              title="Sign Up"
-            />
-          </Grid>,
-          <Grid key={1} item xs={12}>
-            <HeroButton
-              href="/records"
-              icon={<SubjectIcon />}
-              title="Your Records"
-            />
-          </Grid>,
-          <DemoTerminal key={2} />
-          // <Grid key={2} item xs={12}>
+          // <Grid key={0} item xs={12}>
           //   <HeroButton
-          //     href="/docs/cli-tool"
-          //     icon={<GetAppIcon />}
-          //     title="Installation Guide"
+          //     href="/api/auth/login"
+          //     icon={<AccountCircleIcon />}
+          //     title="Sign Up"
           //   />
-          // </Grid>
+          // </Grid>,
+          // <Grid key={1} item xs={12}>
+          //   <HeroButton
+          //     href="/records"
+          //     icon={<SubjectIcon />}
+          //     title="Your Records"
+          //   />
+          // </Grid>,
+          <Grid key={2} item xs={12}>
+            <HeroButton
+              href="/tutorial"
+              icon={<ChevronRight />}
+              title="Get started"
+            />
+          </Grid>,
+          <DemoTerminal key={2} />,
         ]}
       />
     </Grid>
@@ -169,58 +177,6 @@ function Hero({ dividers = false }) {
 
 function Install({ dividers = false }) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
-
-  useEffect(function () {
-    if (window.navigator.appVersion.indexOf("Win") != -1) setValue(0);
-    else if (window.navigator.appVersion.indexOf("Mac") != -1) setValue(1);
-    else if (window.navigator.appVersion.indexOf("Linux") != -1) setValue(2);
-    else setValue(2);
-  }, [])
-
-  const installTabs = [
-    {
-      label: "Windows",
-      content: (
-        <ReactMarkdown components={{ code: CodeBlock }} >
-          {"```bash\n\
-            # Add KeySpot scoop bucket\n\
-            scoop bucket add keyspot https://github.com/keyspot/scoop-bucket\n\
-            \n\
-            scoop install keyspot"
-          }
-        </ReactMarkdown>
-      ),
-    },
-    {
-      label: "Mac",
-      content: (
-        <ReactMarkdown components={{ code: CodeBlock }} >
-          {"```bash\n\
-            # Add KeySpot homebrew tap\n\
-            brew tap keyspot/cli\n\
-            \n\
-            brew install keyspot"
-          }
-        </ReactMarkdown>
-      ),
-    },
-    {
-      label: "Linux (Ubuntu/Debian)",
-      content: (
-        <ReactMarkdown components={{ code: CodeBlock }} >
-          {"```bash\n\
-            # Add KeySpot ppa\n\
-            curl -s --compressed \"https://keyspot.github.io/cli-tool-ppa/KEY.gpg\" | sudo apt-key add -\n\
-            sudo curl -s --compressed -o /etc/apt/sources.list.d/keyspot.list \"https://keyspot.github.io/cli-tool-ppa/keyspot.list\"\n\
-            sudo apt update\n\
-            \n\
-            sudo apt install keyspot"
-          }
-        </ReactMarkdown>
-      ),
-    },
-  ];
 
   return (
     <Grid className={dividers ? classes.container : ""} container spacing={3}>
@@ -231,11 +187,7 @@ function Install({ dividers = false }) {
         />
       </Grid>
       <Grid item xs={12} align="left" >
-        {/* <Card>
-          <CardContent> */}
-        <SwipeTabs tabs={installTabs} value={value} onChange={index => setValue(index)} />
-        {/* </CardContent>
-        </Card> */}
+        <InstallTabs />
       </Grid>
     </Grid>
   );
