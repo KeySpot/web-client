@@ -123,8 +123,8 @@ export default function Tutorial() {
       case 1:
         return (
           <div>
-            <Typography>Feel free to follow along on your own terminal</Typography><br />
-            <Typography>The KeySpot Command Line Tool can easily be installed for Windows, Mac, and Linux</Typography><br />
+            <Typography>Feel free to follow along on your own terminal.</Typography><br />
+            <Typography>The KeySpot Command Line Tool can easily be installed for Windows, Mac, and Linux.</Typography><br />
             <Grid item xs={12} align="left" style={{ fontSize: "3rm" }}>
               <InstallTabs />
             </Grid>
@@ -149,9 +149,9 @@ export default function Tutorial() {
         return (
           <div>
             <Typography>KeySpot can be used without configuration. However, configuring your CLI tool gives you access to all features and makes it even simpler to use.</Typography><br />
-            <Typography>To configure, you will need an access key which we have generated for you.</Typography><br />
-            <Typography>If you loase your token, you can always generate new ones in the <Link href="/account">Account</Link> section.</Typography><br />
+            <Typography>To configure, you will need a CLI token which we have generated for you.</Typography><br />
             <Typography>Your Token:</Typography><HiddenField style={{ wordBreak: 'break-all' }} value={tokenData ? tokenData.token : ''} />
+            <Typography>If you loose your token, you can always generate new ones in the <Link href="/account">Account</Link> section.</Typography><br />
             <Grid item xs={12} align="left" style={{ fontSize: "3rm" }}>
               <Terminal
                 white
@@ -193,7 +193,7 @@ export default function Tutorial() {
             </Grid>
             <br /><Typography>We&apos;ve just scratched the surface with all the ways you can use keyspot.</Typography><br />
             <Typography>If you want to learn more about how to use the CLI tool or use your secrets directly in code without the CLI tool, checkout the <Link href="/docs/cli-tool">Docs</Link> section.</Typography><br />
-            <Typography>Click finish to go to start making your own records.</Typography><br />
+            <Typography>Click finish to go and start making your own records.</Typography><br />
           </div>
         );
     };
