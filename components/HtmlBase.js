@@ -1,5 +1,6 @@
 import process from 'process';
 import Head from 'next/head';
+import Script from 'next/script';
 import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -27,10 +28,13 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
         <title>{title}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="main">
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}>
-        </script>
-        <script
+        <Script strategy="afterInteractive" async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
+        <Script
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -39,9 +43,6 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
               gtag('config', '${googleAnalyticsId}');`
           }}
         />
-      </Head>
-
-      <main className="main">
         <Responsive
           desktop={
             <Container spacing={3} className={classes.root} >
