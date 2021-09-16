@@ -60,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  toolbar: {
+    opacity: 0.5,
+    backgroundColor: 'transparent',
+    },
 }));
 
 const linkMapDesktop = [
@@ -95,7 +99,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
   return (
     <div className={classes.grow}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar classes={classes.toolbar}>
           <Link href="/">
             <a>
               <Image height={32} width={96} src={logo} alt="logo" />
@@ -147,7 +151,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           />
         </Toolbar>
       </AppBar>
-      <Toolbar />
+      <Toolbar className={classes.toolbar} />
       <Drawer
         className={classes.drawer}
         variant="persistent"

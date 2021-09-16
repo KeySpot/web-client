@@ -12,9 +12,9 @@ export default async function handler(req, res) {
                 break;
             case 'patch':
                 await fetch(`${apiUrl}/${req.query.accessKey}${Object.keys(req.query).length > 0 ? '?' + Object.entries(req.query).map(kvp => `${kvp[0]}=${kvp[1]}`).join('&') : ''}`, {
-                    method: 'PATCH',
+                    method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(req.body)
+                    body: JSON.stringify(req.body),
                 });
                 res.status(200);
                 res.send();
