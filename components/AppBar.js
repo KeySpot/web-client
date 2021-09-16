@@ -60,10 +60,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  toolbar: {
-    opacity: 0.5,
-    backgroundColor: 'transparent',
-    },
 }));
 
 const linkMapDesktop = [

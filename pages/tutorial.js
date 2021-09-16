@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [<Typography variant="h5">Make a record</Typography>, <Typography variant="h5">Install the CLI tool</Typography>, <Typography variant="h5">Configure your CLI tool</Typography>, <Typography variant="h5">Use your secrets as environment variables</Typography>];
+  return [<Typography key={"Make a record"} variant="h5">Make a record</Typography>, <Typography key={"Install the CLI tool"} variant="h5">Install the CLI tool</Typography>, <Typography variant="h5" key={"Configure your CLI tool"}>Configure your CLI tool</Typography>, <Typography variant="h5" key={"How to use"}>Use your secrets as environment variables</Typography>];
 }
 
 const fetcher = url => fetch(url).then(res => res.json());
@@ -104,7 +104,7 @@ export default function Tutorial() {
             <br />
             <Grid conatianer>
               {names.map((name, index) => (
-                <Grid item xs={12}>
+                <Grid item xs={12} key={`Secrets: ${index}`}>
                   <Grid container>
                     <Grid item xs={6}>
                       <TextField helperText="Secret Name" value={name} onChange={event => {
