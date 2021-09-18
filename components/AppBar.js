@@ -60,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  appBar: {
+    // background: 'rgba(255, 255, 255, 0.5)',
+    // background: 'transparent',
+    // boxShadow: 'none',
+  },
 }));
 
 const linkMapDesktop = [
@@ -94,8 +99,8 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed">
-        <Toolbar classes={classes.toolbar}>
+      <AppBar className={classes.appBar}>
+        <Toolbar>
           <Link href="/">
             <a>
               <Image height={32} width={96} src={logo} alt="logo" />
@@ -103,7 +108,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           </Link>
           <Responsive
             desktop={
-              <Tabs value={linkMapDesktop.findIndex(element => element.name === router.pathname.split('/')[1])} >
+              <Tabs value={linkMapDesktop.findIndex(element => element.href.split('/')[1] === router.pathname.split('/')[1])} >
                 {linkMapDesktop.map((element, index) => {
                   return (
                     <Link href={element.href} passHref key={index}>
@@ -147,7 +152,7 @@ export default function PrimarySearchAppBar({ title, currentTab }) {
           />
         </Toolbar>
       </AppBar>
-      <Toolbar className={classes.toolbar} />
+      <Toolbar/>
       <Drawer
         className={classes.drawer}
         variant="persistent"
