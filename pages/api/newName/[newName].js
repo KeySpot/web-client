@@ -7,7 +7,7 @@ const apiUrl = process.env.API_URL;
 export default withApiAuthRequired(async function handler(req, res) {
     const { user } = getSession(req, res);
     const token = await getToken();
-    console.log(JSON.stringify(req.body))
+    const body = req.body ? JSON.stringify(req.body) : JSON.stringify({});
     try {
         const response = await fetch(`${apiUrl}/records/${user.sub}/${req.query.newName}`, {
             method: 'PUT',
@@ -15,7 +15,7 @@ export default withApiAuthRequired(async function handler(req, res) {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(req.body),
+            body: body,
         });
         
         res.status(200);
