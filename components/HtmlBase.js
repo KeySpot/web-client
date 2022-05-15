@@ -25,6 +25,7 @@ export default function HtmlBase({ children = [], title = "KeySpot" }) {
         <title>{title}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6665226199759525" crossOrigin="anonymous"></script>
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}>
         </script>
