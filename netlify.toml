@@ -1,6 +1,9 @@
 [build]
 publish = ".next"
 
+[functions]
+node_bundler = "esbuild"
+
 [[redirects]]
   from = "/docs"
   to = "/docs/cli-tool"
